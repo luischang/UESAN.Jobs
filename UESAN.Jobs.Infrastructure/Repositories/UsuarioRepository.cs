@@ -9,29 +9,33 @@ using UESAN.Jobs.Infrastructure.Models;
 
 namespace UESAN.Jobs.Infrastructure.Repositories
 {
-	public  class UsuarioRepository
+	public class UsuarioRepository : IUsuarioRepository
 	{
 		private readonly BolsaDeTrabajoContext _context;
 
-		public UsuarioRepository(BolsaDeTrabajoContext context) 
+		public UsuarioRepository(BolsaDeTrabajoContext context)
 		{
 			_context = context;
 		}
 
-		public async Task<IEnumerable<Usuario>> GetAll() 
+		public async Task<Usuario> SigIn( string username, string password) 
 		{
-			return await _context.Usuario.Where(x=>x.Estado.Equals(1)).ToListAsync();
+			return await _context.Usuario.Where(x => x.Correo == username && x.Password == password).FirstOrDefaultAsync();
+		
+		}
+
+		public async Task<IEnumerable<Usuario>> GetAll()
+		{
+			return await _context.Usuario.Where(x => x.Estado.Equals(1)).ToListAsync();
 
 		}
 
-		public async Task<Usuario> GetById( int id) 
+		public async Task<Usuario> GetById(int id)
 		{
-			return  await  _context.Usuario.Where(x => x.IdUsuario == id).FirstOrDefaultAsync();
-			
-			
+			return await _context.Usuario.Where(x => x.IdUsuario == id).FirstOrDefaultAsync();
 		}
 
-		public async Task <bool> InsertU(Usuario usuario) 
+		public async Task<bool> InsertU(Usuario usuario)
 		{
 			await _context.AddAsync(usuario);
 			int fila = await _context.SaveChangesAsync();
@@ -39,14 +43,14 @@ namespace UESAN.Jobs.Infrastructure.Repositories
 
 		}
 
-		public async Task<bool> update(Usuario usuario) 
+		public async Task<bool> update(Usuario usuario)
 		{
 			_context.Usuario.Update(usuario);
 			int rows = await _context.SaveChangesAsync();
 			return rows > 0;
 		}
 
-		public async Task<bool> delete(int id) 
+		public async Task<bool> delete(int id)
 		{
 			var usu = await _context.Usuario.Where(x => x.IdUsuario == id).FirstOrDefaultAsync();
 
@@ -59,11 +63,25 @@ namespace UESAN.Jobs.Infrastructure.Repositories
 			return rows > 0;
 		}
 
+		public async Task<bool> IsEmailRegistered(string email)
+		{
+			return await _context
+				.Usuario
+				.Where(x => x.Correo == email).AnyAsync();
+		}
+
+		public async Task<bool> SignUp(Usuario user)
+		{
+			await _context.Usuario.AddAsync(user);
+			int rows = await _context.SaveChangesAsync();
+			return rows > 0;
+		}
 
 
 
 
-		
+
+
 
 
 
