@@ -5,41 +5,44 @@ using System.Text;
 using System.Threading.Tasks;
 using UESAN.Jobs.Core.DTOs;
 using UESAN.Jobs.Core.Entities;
+using UESAN.Jobs.Core.Interfaces;
 using UESAN.Jobs.Infrastructure.Repositories;
 
 namespace UESAN.Jobs.Core.Services
 {
-	public  class EmpresaService
+    public class EmpresaService :IEmpresaService
 	{
 		private readonly IEmpresaRepository _empresaRepository;
 		private readonly UsuarioService _usuarioService;
 		private readonly IUsuarioRepository _usuarioRepository;
-		
 
-		public EmpresaService (IEmpresaRepository empresaRepository, UsuarioService usuarioService, IUsuarioRepository usuarioRepository)
+
+		public EmpresaService(IEmpresaRepository empresaRepository, UsuarioService usuarioService, IUsuarioRepository usuarioRepository)
 		{
 			_empresaRepository = empresaRepository;
 			_usuarioService = usuarioService;
 			_usuarioRepository = usuarioRepository;
 		}
 
-		
 
-		public async Task<IEnumerable<EmpresaUsuarioDTO>> GetAll() 
+
+		public async Task<IEnumerable<EmpresaUsuarioDTO>> GetAll()
 		{
 			var empresas = await _empresaRepository.GetAll();
 
-			var empresaDTO = empresas.Select(e=> new EmpresaUsuarioDTO
+			var empresaDTO = empresas.Select(e => new EmpresaUsuarioDTO
 			{
 				IdEmpresa = e.IdEmpresa,
 				Nombre = e.Nombre,
 				Ruc = e.Ruc,
-				Direccion= e.Direccion,
+				Direccion = e.Direccion,
 				Telefono = e.Telefono,
 				Usuario = new UsuarioDescripcionDTO()
-				{ IdUsuario = e.IdUsuarioNavigation.IdUsuario , Correo = e.IdUsuarioNavigation.Correo
-				 }
-				
+				{
+					IdUsuario = e.IdUsuarioNavigation.IdUsuario,
+					Correo = e.IdUsuarioNavigation.Correo
+				}
+
 			});
 			return empresaDTO;
 
@@ -58,20 +61,31 @@ namespace UESAN.Jobs.Core.Services
 				Direccion = empresa.Direccion,
 				Telefono = empresa.Telefono,
 				Usuario = new UsuarioDescripcionDTO()
-				{ IdUsuario = empresa.IdUsuarioNavigation.IdUsuario, Correo = empresa.IdUsuarioNavigation.Correo
+				{
+					IdUsuario = empresa.IdUsuarioNavigation.IdUsuario,
+					Correo = empresa.IdUsuarioNavigation.Correo
 				}
-				
+
 			};
 			return empresaDTO;
 		}
 
-		public async Task<bool> Insert(EmpresaInsertDTO empresaInsertDTO, UsuarioAuthRequestDTO usuarioAuthRequestDTO)
+		public async Task<bool> Insert(EmpresaInsertDTO empresaInsertDTO)
 		{
-			var usu = await _usuarioService.register(usuarioAuthRequestDTO, "empresa");
+			var usuarioI = new UsuarioAuthRequestDTO()
+			{
+				Correo = empresaInsertDTO.UsuarioInsert.Correo,
+				Password = empresaInsertDTO.UsuarioInsert.Password,
+				Tipo = "empresa"
+			};
+
+			var usu = await _usuarioService.register(usuarioI);
+			//Traemos el objeto usuario creado
+			var persona = await _usuarioService.GetUsuCreateByCorreo(usuarioI);
 
 			if (usu)
 			{
-				var usuario = await _usuarioRepository.GetById(usuarioAuthRequestDTO.IdUsuario);
+				var usuario = await _usuarioRepository.GetById(persona.IdUsuario);
 
 				var empresa = new Empresa()
 				{
@@ -95,7 +109,7 @@ namespace UESAN.Jobs.Core.Services
 				IdEmpresa = empresaDTO.IdEmpresa,
 				Nombre = empresaDTO.Nombre,
 				Ruc = empresaDTO.Ruc,
-				Telefono= empresaDTO.Telefono,
+				Telefono = empresaDTO.Telefono,
 				Direccion = empresaDTO.Direccion,
 				IdUsuario = empresaDTO.IdUsuario
 			};

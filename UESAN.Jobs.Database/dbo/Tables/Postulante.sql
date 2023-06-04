@@ -1,5 +1,5 @@
 ﻿CREATE TABLE [dbo].[Postulante] (
-    [IdPostulante] INT          NOT NULL,
+    [IdPostulante] INT          NOT NULL IDENTITY,
     [idUsuario]    INT          NULL,
     [Nombre]       VARCHAR (50) NULL,
     [DNI]          VARCHAR (10) NULL,

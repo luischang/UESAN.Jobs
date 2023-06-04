@@ -42,11 +42,8 @@ namespace UESAN.Jobs.Core.DTOs
 
 	public class UsuarioAuthRequestDTO 
 	{
-		public int IdUsuario { get; set; }
 
 		public string? Tipo { get; set; }
-
-		public bool? Estado { get; set; }
 
 		public string? Correo { get; set; }
 

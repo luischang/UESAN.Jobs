@@ -16,9 +16,12 @@ builder
 	   .Services
 	   .AddDbContext<BolsaDeTrabajoContext>
 	   (options => options.UseSqlServer(connectionString));
+
 builder.Services.AddTransient<IUsuarioRepository, UsuarioRepository>();
 builder.Services.AddTransient<IUsuarioService, UsuarioService>();
-
+builder.Services.AddTransient<IEmpresaRepository, EmpresaRepository>();
+builder.Services.AddTransient<UsuarioService, UsuarioService>();
+builder.Services.AddTransient<IEmpresaService, EmpresaService>();
 builder.Services.AddControllers();
 
 

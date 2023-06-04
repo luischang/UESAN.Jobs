@@ -1,5 +1,5 @@
 ﻿CREATE TABLE [dbo].[OfertaPostular] (
-    [idOfertaPostular] INT      NOT NULL,
+    [idOfertaPostular] INT      NOT NULL IDENTITY,
     [idOferta]         INT      NULL,
     [idPostulante]     INT      NULL,
     [fecha]            DATETIME NULL,

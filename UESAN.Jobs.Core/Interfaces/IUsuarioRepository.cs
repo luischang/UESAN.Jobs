@@ -9,6 +9,7 @@ namespace UESAN.Jobs.Infrastructure.Repositories
 		Task<Usuario> GetById(int id);
 		Task<bool> InsertU(Usuario usuario);
 		Task<bool> update(Usuario usuario);
+		Task<Usuario> GetId(string correo);
 
 		Task<Usuario> SigIn(string username, string password);
 

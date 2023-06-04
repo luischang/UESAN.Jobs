@@ -13,6 +13,7 @@ namespace UESAN.Jobs.Core.Services
     public class UsuarioService : IUsuarioService
 	{
 		private readonly IUsuarioRepository _usuarioRepository;
+		private int id = 1000;
 
 		public UsuarioService(IUsuarioRepository usuarioRepository)
 		{
@@ -37,16 +38,17 @@ namespace UESAN.Jobs.Core.Services
 			return usuarioDTO;
 		}
 
-		public async Task<bool> register(UsuarioAuthRequestDTO usuDTO, string tipo)
+		public async Task<bool> register(UsuarioAuthRequestDTO usuDTO)
 		{
 			var correoResult = await _usuarioRepository.IsEmailRegistered(usuDTO.Correo);
 
 			if (correoResult) { return false; }
-
+			//id = id + 1;
 			var usuario = new Usuario()
 			{
-				Tipo = tipo,
-				Estado = usuDTO.Estado,
+				//IdUsuario = id,
+				Tipo = usuDTO.Tipo,
+				Estado = true,
 				Correo = usuDTO.Correo,
 				Password = usuDTO.Password,
 
@@ -54,8 +56,14 @@ namespace UESAN.Jobs.Core.Services
 			var result = await _usuarioRepository.SignUp(usuario);
 			return result;
 
-
 		}
+
+		public async Task<Usuario> GetUsuCreateByCorreo(UsuarioAuthRequestDTO usuDTO) 
+		{
+			return  await _usuarioRepository.GetId(usuDTO.Correo);
+		
+		}
+		
 
 	}
 }

@@ -35,6 +35,12 @@ namespace UESAN.Jobs.Infrastructure.Repositories
 			return await _context.Usuario.Where(x => x.IdUsuario == id).FirstOrDefaultAsync();
 		}
 
+		public async Task<Usuario> GetId(string correo) 
+		{
+			return await _context.Usuario.Where(x => x.Correo == correo).FirstOrDefaultAsync();
+		
+		}
+
 		public async Task<bool> InsertU(Usuario usuario)
 		{
 			await _context.AddAsync(usuario);
@@ -76,6 +82,7 @@ namespace UESAN.Jobs.Infrastructure.Repositories
 			int rows = await _context.SaveChangesAsync();
 			return rows > 0;
 		}
+
 
 
 

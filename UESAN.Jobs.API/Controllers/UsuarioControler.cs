@@ -28,11 +28,11 @@ namespace UESAN.Jobs.API.Controllers
 		}
 
 		[HttpPost("SignUp")]
-		public async Task<IActionResult> SignUp(UsuarioAuthRequestDTO usuarioAuthRequestDTO,string tipo)
+		public async Task<IActionResult> SignUp(UsuarioAuthRequestDTO usuarioAuthRequestDTO)
 		{
-			var result = await _usuarioService.register(usuarioAuthRequestDTO, tipo);
+			var result = await _usuarioService.register(usuarioAuthRequestDTO);
 			if (!result) { return BadRequest(); }
-			return Ok(result);
+			else { return Ok(result); }
 		}
 	}
 

@@ -1,5 +1,5 @@
 ﻿CREATE TABLE [dbo].[Oferta] (
-    [idOferta]       INT          NOT NULL,
+    [idOferta]       INT          NOT NULL IDENTITY,
     [idEmpresa]      INT          NULL,
     [puesto]         VARCHAR (50) NULL,
     [descripcion]    VARCHAR (30) NULL,

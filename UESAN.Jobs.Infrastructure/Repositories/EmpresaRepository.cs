@@ -12,7 +12,6 @@ namespace UESAN.Jobs.Infrastructure.Repositories
 	public class EmpresaRepository : IEmpresaRepository
 	{
 		private readonly BolsaDeTrabajoContext _context;
-		private int Can = 0;
 
 		public EmpresaRepository(BolsaDeTrabajoContext context)
 		{
@@ -52,8 +51,7 @@ namespace UESAN.Jobs.Infrastructure.Repositories
 			{
 				return false;//si se elimino
 			}
-			Can = Can - 1;
-			emp.IdEmpresa = Can;
+			emp.Nombre = "eliminado";
 			int rows = await _context.SaveChangesAsync();
 			return rows > 0;
 		}

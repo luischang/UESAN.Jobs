@@ -55,9 +55,7 @@ namespace UESAN.Jobs.Core.DTOs
 
 	public class EmpresaInsertDTO 
 	{
-		public int IdEmpresa { get; set; }
-
-		public int? IdUsuario { get; set; }
+		public UsuarioAuthRequestDTO UsuarioInsert { get; set; }	
 
 		public string? Nombre { get; set; }
 
