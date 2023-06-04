@@ -37,7 +37,7 @@ namespace UESAN.Jobs.Infrastructure.Repositories
 
 		public async Task<bool> update(Postulante postulante)
 		{
-			_context.Postulante.Update(postulante);
+			 _context.Postulante.Update(postulante);
 			int rows = _context.SaveChanges();
 			return rows > 0;
 		}

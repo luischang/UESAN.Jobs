@@ -15,6 +15,7 @@ namespace UESAN.Jobs.Core.Services
 		private readonly IEmpresaRepository _empresaRepository;
 		private readonly UsuarioService _usuarioService;
 		private readonly IUsuarioRepository _usuarioRepository;
+		
 
 
 		public EmpresaService(IEmpresaRepository empresaRepository, UsuarioService usuarioService, IUsuarioRepository usuarioRepository)
@@ -102,7 +103,7 @@ namespace UESAN.Jobs.Core.Services
 			return false;
 		}
 
-		public async Task<bool> Update(EmpresaDTO empresaDTO)
+		public async Task<bool> Update(EmpresaUpdateDTO empresaDTO)
 		{
 			var empresa = new Empresa()
 			{
@@ -118,9 +119,27 @@ namespace UESAN.Jobs.Core.Services
 
 		public async Task<bool> Delete(int id)
 		{
-			return await _empresaRepository.delete(id);
+			var idUsuario = await _empresaRepository.GetIdUsuario(id);
+			 return await _empresaRepository.delete(id) && await _usuarioRepository.delete(idUsuario);
 		}
 
+		public async Task<EmpresaDTO> GetEmpresaDto(int id)
+		{
+			var empresa = await _empresaRepository.GetById(id);
+			if (empresa == null)
+				return null;
+			var empresaDTO = new EmpresaDTO()
+			{
+				IdEmpresa = empresa.IdEmpresa,
+				Nombre = empresa.Nombre,
+				Ruc = empresa.Ruc,
+				Direccion = empresa.Direccion,
+				Telefono = empresa.Telefono,
+				IdUsuario= empresa.IdUsuario
+
+			};
+			return empresaDTO;
+		}
 
 	}
 }

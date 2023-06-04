@@ -53,6 +53,8 @@ namespace UESAN.Jobs.Core.DTOs
 		public string? Telefono { get; set; }
 	}
 
+	
+
 	public class EmpresaInsertDTO 
 	{
 		public UsuarioAuthRequestDTO UsuarioInsert { get; set; }	

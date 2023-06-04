@@ -1,4 +1,6 @@
-﻿using UESAN.Jobs.Core.Entities;
+﻿
+
+using UESAN.Jobs.Core.Entities;
 
 namespace UESAN.Jobs.Infrastructure.Repositories
 {
@@ -9,5 +11,6 @@ namespace UESAN.Jobs.Infrastructure.Repositories
 		Task<bool> InsertEmpresa(Empresa empresa);
 		Task<bool> Update(Empresa empresa);
 		Task<bool> delete(int id);
+		Task<int> GetIdUsuario(int id);
 	}
 }

@@ -62,7 +62,7 @@ namespace UESAN.Jobs.Infrastructure.Repositories
 
 			if (usu == null)
 			{
-				return false;//si se elimino
+				return false;
 			}
 			usu.Estado = false;
 			int rows = await _context.SaveChangesAsync();

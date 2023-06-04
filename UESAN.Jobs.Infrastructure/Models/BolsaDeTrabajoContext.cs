@@ -34,11 +34,9 @@ public partial class BolsaDeTrabajoContext : DbContext
     {
         modelBuilder.Entity<Empresa>(entity =>
         {
-            entity.HasKey(e => e.IdEmpresa).HasName("PK__Empresa__75D2CED4BCA0C362");
+            entity.HasKey(e => e.IdEmpresa).HasName("PK__tmp_ms_x__75D2CED4D046BF07");
 
-            entity.Property(e => e.IdEmpresa)
-                .ValueGeneratedNever()
-                .HasColumnName("idEmpresa");
+            entity.Property(e => e.IdEmpresa).HasColumnName("idEmpresa");
             entity.Property(e => e.Direccion)
                 .HasMaxLength(40)
                 .IsUnicode(false)
@@ -58,16 +56,14 @@ public partial class BolsaDeTrabajoContext : DbContext
 
             entity.HasOne(d => d.IdUsuarioNavigation).WithMany(p => p.Empresa)
                 .HasForeignKey(d => d.IdUsuario)
-                .HasConstraintName("FK__Empresa__idUsuar__29572725");
+                .HasConstraintName("FK__Empresa__idUsuar__44FF419A");
         });
 
         modelBuilder.Entity<Oferta>(entity =>
         {
-            entity.HasKey(e => e.IdOferta).HasName("PK__Oferta__05A1245E537704F3");
+            entity.HasKey(e => e.IdOferta).HasName("PK__tmp_ms_x__05A1245EC4ACE156");
 
-            entity.Property(e => e.IdOferta)
-                .ValueGeneratedNever()
-                .HasColumnName("idOferta");
+            entity.Property(e => e.IdOferta).HasColumnName("idOferta");
             entity.Property(e => e.Certificados)
                 .HasColumnType("image")
                 .HasColumnName("certificados");
@@ -106,16 +102,14 @@ public partial class BolsaDeTrabajoContext : DbContext
 
             entity.HasOne(d => d.IdEmpresaNavigation).WithMany(p => p.Oferta)
                 .HasForeignKey(d => d.IdEmpresa)
-                .HasConstraintName("FK__Oferta__idEmpres__2C3393D0");
+                .HasConstraintName("FK__Oferta__idEmpres__45F365D3");
         });
 
         modelBuilder.Entity<OfertaPostular>(entity =>
         {
-            entity.HasKey(e => e.IdOfertaPostular).HasName("PK__OfertaPo__2DB5694C4617202E");
+            entity.HasKey(e => e.IdOfertaPostular).HasName("PK__tmp_ms_x__2DB5694C926BE58E");
 
-            entity.Property(e => e.IdOfertaPostular)
-                .ValueGeneratedNever()
-                .HasColumnName("idOfertaPostular");
+            entity.Property(e => e.IdOfertaPostular).HasColumnName("idOfertaPostular");
             entity.Property(e => e.Estado).HasColumnName("estado");
             entity.Property(e => e.Fecha)
                 .HasColumnType("datetime")
@@ -134,9 +128,8 @@ public partial class BolsaDeTrabajoContext : DbContext
 
         modelBuilder.Entity<Postulante>(entity =>
         {
-            entity.HasKey(e => e.IdPostulante).HasName("PK__Postulan__D8831F4DA0226515");
+            entity.HasKey(e => e.IdPostulante).HasName("PK__tmp_ms_x__D8831F4D95532211");
 
-            entity.Property(e => e.IdPostulante).ValueGeneratedNever();
             entity.Property(e => e.Certificados)
                 .HasColumnType("image")
                 .HasColumnName("certificados");
@@ -162,16 +155,14 @@ public partial class BolsaDeTrabajoContext : DbContext
 
             entity.HasOne(d => d.IdUsuarioNavigation).WithMany(p => p.Postulante)
                 .HasForeignKey(d => d.IdUsuario)
-                .HasConstraintName("FK__Postulant__idUsu__267ABA7A");
+                .HasConstraintName("FK__Postulant__idUsu__48CFD27E");
         });
 
         modelBuilder.Entity<Usuario>(entity =>
         {
-            entity.HasKey(e => e.IdUsuario).HasName("PK__Usuario__645723A6C3E13E51");
+            entity.HasKey(e => e.IdUsuario).HasName("PK__tmp_ms_x__645723A60AE4F8A2");
 
-            entity.Property(e => e.IdUsuario)
-                .ValueGeneratedNever()
-                .HasColumnName("idUsuario");
+            entity.Property(e => e.IdUsuario).HasColumnName("idUsuario");
             entity.Property(e => e.Correo)
                 .HasMaxLength(50)
                 .IsUnicode(false)
