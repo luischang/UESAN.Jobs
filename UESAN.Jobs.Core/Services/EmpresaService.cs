@@ -37,7 +37,7 @@ namespace UESAN.Jobs.Core.Services
 				Direccion= e.Direccion,
 				Telefono = e.Telefono,
 				Usuario = new UsuarioDescripcionDTO()
-				{//Aqui va :  IdUsuario = e.Usuario.IdUsuario , Correo = e.Usuario.Correo
+				{ IdUsuario = e.IdUsuarioNavigation.IdUsuario , Correo = e.IdUsuarioNavigation.Correo
 				 }
 				
 			});
@@ -58,7 +58,7 @@ namespace UESAN.Jobs.Core.Services
 				Direccion = empresa.Direccion,
 				Telefono = empresa.Telefono,
 				Usuario = new UsuarioDescripcionDTO()
-				{//Aqui va : IdUsuario = empresa.Usuario.IdUsuario, Correo = empresa.Usuario.Correo
+				{ IdUsuario = empresa.IdUsuarioNavigation.IdUsuario, Correo = empresa.IdUsuarioNavigation.Correo
 				}
 				
 			};
