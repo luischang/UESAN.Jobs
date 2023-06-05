@@ -4,11 +4,11 @@
     [puesto]         VARCHAR (50) NULL,
     [descripcion]    VARCHAR (30) NULL,
     [requisitos]     VARCHAR (40) NULL,
-    [certificados]   IMAGE        NULL,
+    [certificados]   VARCHAR(50)        NULL,
     [funciones]      VARCHAR (50) NULL,
     [ubicacion]      VARCHAR (50) NULL,
     [modalidad]      VARCHAR (50) NULL,
-    [estado]         VARCHAR (50) NULL,
+    [estado]         BIT NULL,
     [Fecha_Creacion] DATETIME     NULL,
     PRIMARY KEY CLUSTERED ([idOferta] ASC),
     FOREIGN KEY ([idEmpresa]) REFERENCES [dbo].[Empresa] ([idEmpresa])
