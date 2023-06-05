@@ -22,6 +22,11 @@ builder.Services.AddTransient<IUsuarioService, UsuarioService>();
 builder.Services.AddTransient<UsuarioService, UsuarioService>();
 builder.Services.AddTransient<IEmpresaRepository, EmpresaRepository>();
 builder.Services.AddTransient<IEmpresaService, EmpresaService>();
+builder.Services.AddTransient<IPostulanteRepository, PostulanteRepository>();
+builder.Services.AddTransient<IPostulanteService, PostulanteService>();
+builder.Services.AddTransient<IOfertaRepository, OfertaRepository>();
+builder.Services.AddTransient<IOfertaService, OfertaService>();
+
 builder.Services.AddControllers();
 
 
