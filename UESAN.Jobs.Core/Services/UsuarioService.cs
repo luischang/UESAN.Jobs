@@ -63,7 +63,15 @@ namespace UESAN.Jobs.Core.Services
 			return  await _usuarioRepository.GetId(usuDTO.Correo);
 		
 		}
-		
+
+		public async Task<bool> validateLog(string correo, string contra)
+		{
+			var usuario = await _usuarioRepository.SigIn(correo, contra);
+
+			if (usuario == null) { return false; }
+			return true;
+		}
+
 
 	}
 }

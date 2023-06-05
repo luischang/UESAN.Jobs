@@ -123,23 +123,6 @@ namespace UESAN.Jobs.Core.Services
 			 return await _empresaRepository.delete(id) && await _usuarioRepository.delete(idUsuario);
 		}
 
-		public async Task<EmpresaDTO> GetEmpresaDto(int id)
-		{
-			var empresa = await _empresaRepository.GetById(id);
-			if (empresa == null)
-				return null;
-			var empresaDTO = new EmpresaDTO()
-			{
-				IdEmpresa = empresa.IdEmpresa,
-				Nombre = empresa.Nombre,
-				Ruc = empresa.Ruc,
-				Direccion = empresa.Direccion,
-				Telefono = empresa.Telefono,
-				IdUsuario= empresa.IdUsuario
-
-			};
-			return empresaDTO;
-		}
 
 	}
 }
