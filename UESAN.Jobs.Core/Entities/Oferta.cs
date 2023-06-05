@@ -15,7 +15,7 @@ public partial class Oferta
 
     public string? Requisitos { get; set; }
 
-    public byte[]? Certificados { get; set; }
+    public string? Certificados { get; set; }
 
     public string? Funciones { get; set; }
 
@@ -23,7 +23,7 @@ public partial class Oferta
 
     public string? Modalidad { get; set; }
 
-    public string? Estado { get; set; }
+    public bool? Estado { get; set; }
 
     public DateTime? FechaCreacion { get; set; }
 

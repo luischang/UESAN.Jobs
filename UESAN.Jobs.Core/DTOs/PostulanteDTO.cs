@@ -20,14 +20,15 @@ namespace UESAN.Jobs.Core.DTOs
 
 		public string? Telefono { get; set; }
 
-		public byte[]? Cv { get; set; }
+		public string? Cv { get; set; }
 
-		public byte[]? Certificados { get; set; }
+		public string? Certificados { get; set; }
+
 	}
 
 	public class PostulanteInsertDTO 
 	{
-		public UsuarioAuthRequestDTO UsuarioInsert { get; set; }
+		
 		public string? Nombre { get; set; }
 
 		public string? Dni { get; set; }
@@ -36,14 +37,17 @@ namespace UESAN.Jobs.Core.DTOs
 
 		public string? Telefono { get; set; }
 
-		public byte[]? Cv { get; set; }
+		public string? Cv { get; set; }
 
-		public byte[]? Certificados { get; set; }
+		public string? Certificados { get; set; }
+
+		public UsuarioAuthRequestDTO UsuarioInsert { get; set; }
 
 	}
 
 	public class PostulanteUsuarioDTO 
 	{
+		public int IdPostulante { get; set; }
 		public string? Nombre { get; set; }
 
 		public string? Dni { get; set; }
@@ -52,11 +56,32 @@ namespace UESAN.Jobs.Core.DTOs
 
 		public string? Telefono { get; set; }
 
-		public byte[]? Cv { get; set; }
+		public string? Cv { get; set; }
 
-		public byte[]? Certificados { get; set; }
+		public string? Certificados { get; set; }
 
-		public UsuarioDescripcionDTO UsuarioDescripcionDTO { get; set; }
+		public UsuarioDescripcionDTO Usuario { get; set; }
+
+	}
+
+	public class PostulanteUpdateDTO 
+	{
+		public int IdPostulante { get; set; }
+
+		public int? IdUsuario { get; set; }
+
+		public string? Nombre { get; set; }
+
+		public string? Dni { get; set; }
+
+		public string? Direccion { get; set; }
+
+		public string? Telefono { get; set; }
+
+		public string? Cv { get; set; }
+
+		public string? Certificados { get; set; }
+
 
 	}
 

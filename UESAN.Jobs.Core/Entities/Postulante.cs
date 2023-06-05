@@ -17,9 +17,9 @@ public partial class Postulante
 
     public string? Telefono { get; set; }
 
-    public byte[]? Cv { get; set; }
+    public string? Cv { get; set; }
 
-    public byte[]? Certificados { get; set; }
+    public string? Certificados { get; set; }
 
     public virtual Usuario? IdUsuarioNavigation { get; set; }
 

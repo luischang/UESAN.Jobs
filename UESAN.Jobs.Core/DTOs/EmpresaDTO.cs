@@ -84,5 +84,21 @@ namespace UESAN.Jobs.Core.DTOs
 
 	}
 
+	public class EmpresaDescDTO
+	{
+		public int IdEmpresa { get; set; }
+
+		public string? Nombre { get; set; }
+
+	}
+
+	public class EmpresaOfertaInsertDTO 
+	{
+		public int IdEmpresa { get; set; }
+		public string? Nombre { get; set; }
+
+	}
+
+	
 	 
 }
