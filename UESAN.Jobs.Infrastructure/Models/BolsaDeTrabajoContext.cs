@@ -61,20 +61,18 @@ public partial class BolsaDeTrabajoContext : DbContext
 
         modelBuilder.Entity<Oferta>(entity =>
         {
-            entity.HasKey(e => e.IdOferta).HasName("PK__tmp_ms_x__05A1245EC4ACE156");
+            entity.HasKey(e => e.IdOferta).HasName("PK__tmp_ms_x__05A1245EEF89D991");
 
             entity.Property(e => e.IdOferta).HasColumnName("idOferta");
             entity.Property(e => e.Certificados)
-                .HasColumnType("image")
+                .HasMaxLength(50)
+                .IsUnicode(false)
                 .HasColumnName("certificados");
             entity.Property(e => e.Descripcion)
                 .HasMaxLength(30)
                 .IsUnicode(false)
                 .HasColumnName("descripcion");
-            entity.Property(e => e.Estado)
-                .HasMaxLength(50)
-                .IsUnicode(false)
-                .HasColumnName("estado");
+            entity.Property(e => e.Estado).HasColumnName("estado");
             entity.Property(e => e.FechaCreacion)
                 .HasColumnType("datetime")
                 .HasColumnName("Fecha_Creacion");
@@ -102,7 +100,7 @@ public partial class BolsaDeTrabajoContext : DbContext
 
             entity.HasOne(d => d.IdEmpresaNavigation).WithMany(p => p.Oferta)
                 .HasForeignKey(d => d.IdEmpresa)
-                .HasConstraintName("FK__Oferta__idEmpres__45F365D3");
+                .HasConstraintName("FK__Oferta__idEmpres__4F7CD00D");
         });
 
         modelBuilder.Entity<OfertaPostular>(entity =>
@@ -128,13 +126,15 @@ public partial class BolsaDeTrabajoContext : DbContext
 
         modelBuilder.Entity<Postulante>(entity =>
         {
-            entity.HasKey(e => e.IdPostulante).HasName("PK__tmp_ms_x__D8831F4D95532211");
+            entity.HasKey(e => e.IdPostulante).HasName("PK__tmp_ms_x__D8831F4D0C839D79");
 
             entity.Property(e => e.Certificados)
-                .HasColumnType("image")
+                .HasMaxLength(50)
+                .IsUnicode(false)
                 .HasColumnName("certificados");
             entity.Property(e => e.Cv)
-                .HasColumnType("image")
+                .HasMaxLength(50)
+                .IsUnicode(false)
                 .HasColumnName("CV");
             entity.Property(e => e.Direccion)
                 .HasMaxLength(40)
@@ -155,7 +155,7 @@ public partial class BolsaDeTrabajoContext : DbContext
 
             entity.HasOne(d => d.IdUsuarioNavigation).WithMany(p => p.Postulante)
                 .HasForeignKey(d => d.IdUsuario)
-                .HasConstraintName("FK__Postulant__idUsu__48CFD27E");
+                .HasConstraintName("FK__Postulant__idUsu__4CA06362");
         });
 
         modelBuilder.Entity<Usuario>(entity =>
