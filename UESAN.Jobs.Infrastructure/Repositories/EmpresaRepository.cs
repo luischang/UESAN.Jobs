@@ -20,12 +20,18 @@ namespace UESAN.Jobs.Infrastructure.Repositories
 
 		public async Task<IEnumerable<Empresa>> GetAll()
 		{
-			return await _context.Empresa.Where(x=> x.IdEmpresa > 0 && x.Nombre!="eliminado").Include(z => z.IdUsuarioNavigation).ToListAsync();
+			return await _context.Empresa
+				.Where(x=> x.IdEmpresa > 0 && x.Nombre!="eliminado")
+				.Include(z => z.IdUsuarioNavigation)
+				.ToListAsync();
 		}
 
 		public async Task<Empresa> GetById(int id)
 		{
-			return await _context.Empresa.Where(x => x.IdEmpresa == id).Include(z =>z.IdUsuarioNavigation).FirstOrDefaultAsync();
+			return await _context.Empresa
+				.Where(x => x.IdEmpresa == id)
+				.Include(z =>z.IdUsuarioNavigation)
+				.FirstOrDefaultAsync();
 
 		}
 

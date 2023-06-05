@@ -21,12 +21,12 @@ namespace UESAN.Jobs.Infrastructure.Repositories
 
 		public async Task<IEnumerable<Oferta>> GetAll()
 		{
-			return await _context.Oferta.ToListAsync();
+			return await _context.Oferta.Where(x => x.Estado == true).Include(t => t.IdEmpresaNavigation).ToListAsync();
 		}
 
 		public async Task<Oferta> GetById(int id)
 		{
-			return await _context.Oferta.Where(x => x.IdOferta == id).FirstOrDefaultAsync();
+			return await _context.Oferta.Where(x => x.IdOferta == id).Include(y => y.IdEmpresaNavigation).FirstOrDefaultAsync();
 		}
 
 		public async Task<bool> Insert(Oferta oferta)
@@ -39,6 +39,19 @@ namespace UESAN.Jobs.Infrastructure.Repositories
 		public async Task<bool> Update(Oferta oferta)
 		{
 			_context.Oferta.Update(oferta);
+			int rows = await _context.SaveChangesAsync();
+			return rows > 0;
+		}
+
+		public async Task<bool> delete(int id)
+		{
+			var oferta = await _context.Oferta.Where(x => x.IdOferta == id).FirstOrDefaultAsync();
+
+			if (oferta == null)
+			{
+				return false;
+			}
+			oferta.Estado = false;
 			int rows = await _context.SaveChangesAsync();
 			return rows > 0;
 		}

@@ -20,12 +20,18 @@ namespace UESAN.Jobs.Infrastructure.Repositories
 
 		public async Task<IEnumerable<Postulante>> GetAll()
 		{
-			return await _context.Postulante.ToListAsync();
+			return await _context.Postulante
+				.Where(x => x.Nombre != "eliminado")
+				.Include(z => z.IdUsuarioNavigation)
+				.ToListAsync();
 		}
 
 		public async Task<Postulante> GetById(int id)
 		{
-			return await _context.Postulante.Where(y => y.IdPostulante == id).FirstOrDefaultAsync();
+			return await _context.Postulante
+				.Where(y => y.IdPostulante == id)
+				.Include(x => x.IdUsuarioNavigation)
+				.FirstOrDefaultAsync();
 		}
 
 		public async Task<bool> Insert(Postulante postulante)
@@ -41,6 +47,28 @@ namespace UESAN.Jobs.Infrastructure.Repositories
 			int rows = _context.SaveChanges();
 			return rows > 0;
 		}
+
+		public async Task<int> GetIdUsuario(int id)
+		{
+			int idU = 0;
+			var postulante = await _context.Postulante.Where(x => x.IdPostulante == id).FirstOrDefaultAsync();
+			idU = (int)postulante.IdUsuario + idU;
+			return idU;
+		}
+
+		public async Task<bool> delete(int id)
+		{
+			var emp = await _context.Postulante.Where(x => x.IdPostulante == id).FirstOrDefaultAsync();
+
+			if (emp == null)
+			{
+				return false;
+			}
+			emp.Nombre = "eliminado";
+			int rows = await _context.SaveChangesAsync();
+			return rows > 0;
+		}
+
 
 
 	}
