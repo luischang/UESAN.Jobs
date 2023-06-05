@@ -10,7 +10,5 @@ namespace UESAN.Jobs.Core.Interfaces
         Task<bool> Insert(EmpresaInsertDTO empresaInsertDTO);
         Task<bool> Update(EmpresaUpdateDTO empresaDTO);
 
-		Task<EmpresaDTO> GetEmpresaDto(int id);
-
 	}
 }
