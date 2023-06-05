@@ -26,6 +26,8 @@ builder.Services.AddTransient<IPostulanteRepository, PostulanteRepository>();
 builder.Services.AddTransient<IPostulanteService, PostulanteService>();
 builder.Services.AddTransient<IOfertaRepository, OfertaRepository>();
 builder.Services.AddTransient<IOfertaService, OfertaService>();
+builder.Services.AddTransient<IOfertaPostularRepository,OfertaPostularRepository>();
+builder.Services.AddTransient<IOfertaPostularService, OfertaPostularService>();
 
 builder.Services.AddControllers();
 

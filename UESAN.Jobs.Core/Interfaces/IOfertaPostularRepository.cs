@@ -8,5 +8,6 @@ namespace UESAN.Jobs.Infrastructure.Repositories
 		Task<OfertaPostular> GetById(int id);
 		Task<bool> Insert(OfertaPostular ofertapostular);
 		Task<bool> Update(OfertaPostular ofertaPostular);
+		Task<bool> delete(int id);
 	}
 }

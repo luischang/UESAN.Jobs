@@ -36,7 +36,7 @@ namespace UESAN.Jobs.Core.DTOs
 		public virtual ICollection<OfertaPostular> OfertaPostular { get; set; } = new List<OfertaPostular>();
 	}
 
-	public class OfertaEmpresaDTO 
+	public class OfertaEmpresaDTO
 	{
 		public int IdOferta { get; set; }
 		public string? Puesto { get; set; }
@@ -63,7 +63,7 @@ namespace UESAN.Jobs.Core.DTOs
 
 	}
 
-	public class OfertaUpdateDTO 
+	public class OfertaUpdateDTO
 	{
 		public int IdOferta { get; set; }
 
@@ -90,7 +90,7 @@ namespace UESAN.Jobs.Core.DTOs
 
 	}
 
-	public class OfertaInsert 
+	public class OfertaInsert
 	{
 		public string? Puesto { get; set; }
 
@@ -111,4 +111,21 @@ namespace UESAN.Jobs.Core.DTOs
 
 
 	}
+
+	public class OfertaDescDTO
+	{
+		public int IdOferta { get; set; }
+
+		public string? Descripcion { get; set; }
+
+	}
+	
+	public class OfertOfertaPostularInsertDTO 
+	{
+		public int IdOferta { get; set; }
+
+		public string? Descripcion { get; set; }
+
+	}
+	
 }

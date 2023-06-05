@@ -22,12 +22,20 @@ namespace UESAN.Jobs.Infrastructure.Repositories
 
 		public async Task<IEnumerable<OfertaPostular>> GetAll()
 		{
-			return await _context.OfertaPostular.ToListAsync();
+			return await _context.OfertaPostular
+				.Where(x => x.Estado == true)
+				.Include(y => y.IdOfertaNavigation)
+				.Include(z => z.IdPostulanteNavigation)
+				.ToListAsync();
 		}
 
 		public async Task<OfertaPostular> GetById(int id)
 		{
-			return await _context.OfertaPostular.Where(x => x.IdOfertaPostular == id).FirstOrDefaultAsync();
+			return await _context.OfertaPostular
+				.Where(x => x.IdOfertaPostular == id)
+				.Include(y => y.IdOfertaNavigation)
+				.Include(z => z.IdPostulanteNavigation)
+				.FirstOrDefaultAsync();
 		}
 
 		public async Task<bool> Insert(OfertaPostular ofertapostular)
@@ -41,6 +49,19 @@ namespace UESAN.Jobs.Infrastructure.Repositories
 		public async Task<bool> Update(OfertaPostular ofertaPostular)
 		{
 			_context.OfertaPostular.Update(ofertaPostular);
+			int rows = await _context.SaveChangesAsync();
+			return rows > 0;
+		}
+
+		public async Task<bool> delete(int id)
+		{
+			var ofertaPostular = await _context.OfertaPostular.Where(x => x.IdOfertaPostular == id).FirstOrDefaultAsync();
+
+			if (ofertaPostular == null)
+			{
+				return false;
+			}
+			ofertaPostular.Estado = false;
 			int rows = await _context.SaveChangesAsync();
 			return rows > 0;
 		}
