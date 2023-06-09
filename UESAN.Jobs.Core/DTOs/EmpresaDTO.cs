@@ -42,8 +42,6 @@ namespace UESAN.Jobs.Core.DTOs
 	{
 		public int IdEmpresa { get; set; }
 
-		public int? IdUsuario { get; set; }
-
 		public string? Nombre { get; set; }
 
 		public string? Ruc { get; set; }
@@ -51,6 +49,8 @@ namespace UESAN.Jobs.Core.DTOs
 		public string? Direccion { get; set; }
 
 		public string? Telefono { get; set; }
+
+		public UsuarioUpdate UpdateUsuario { get; set; }
 	}
 
 	
@@ -80,7 +80,7 @@ namespace UESAN.Jobs.Core.DTOs
 
 		public string? Telefono { get; set; }
 
-		public UsuarioDescripcionDTO Usuario { get; set; }
+		public UsuarioDescripcionDTO? Usuario { get; set; }
 
 	}
 
@@ -89,6 +89,7 @@ namespace UESAN.Jobs.Core.DTOs
 		public int IdEmpresa { get; set; }
 
 		public string? Nombre { get; set; }
+
 
 	}
 

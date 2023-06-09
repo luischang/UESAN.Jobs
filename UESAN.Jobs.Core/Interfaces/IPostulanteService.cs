@@ -9,5 +9,5 @@ namespace UESAN.Jobs.Core.Interfaces
         Task<PostulanteUsuarioDTO> GetById(int id);
         Task<bool> Insert(PostulanteInsertDTO postulanteInsertDTO);
         Task<bool> Update(PostulanteUpdateDTO postulanteUpdateDTO);
-    }
+	}
 }

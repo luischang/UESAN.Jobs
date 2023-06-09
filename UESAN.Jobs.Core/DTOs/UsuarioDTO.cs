@@ -58,5 +58,18 @@ namespace UESAN.Jobs.Core.DTOs
 
 	}
 
+	public class UsuarioUpdate 
+	{
+		public int IdUsuario { get; set; }
+		public string? Correo { get; set; }
+		public string? Password { get; set; }
+	}
+
+	public class UsuarioPerfil 
+	{
+		public string? Correo { get; set; }
+		public string? Password { get; set; }
+	}
+
 
 }

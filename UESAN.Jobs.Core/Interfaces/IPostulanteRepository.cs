@@ -12,5 +12,6 @@ namespace UESAN.Jobs.Infrastructure.Repositories
 		Task<int> GetIdUsuario(int id);
 
 		Task<bool> delete(int id);
+
 	}
 }

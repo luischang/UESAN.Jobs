@@ -68,8 +68,6 @@ namespace UESAN.Jobs.Core.DTOs
 	{
 		public int IdPostulante { get; set; }
 
-		public int? IdUsuario { get; set; }
-
 		public string? Nombre { get; set; }
 
 		public string? Dni { get; set; }
@@ -81,6 +79,8 @@ namespace UESAN.Jobs.Core.DTOs
 		public string? Cv { get; set; }
 
 		public string? Certificados { get; set; }
+
+		public UsuarioUpdate UpdateUsuario { get; set; }
 
 
 	}
@@ -100,6 +100,8 @@ namespace UESAN.Jobs.Core.DTOs
 		public string? Nombre { get; set; }
 
 	}
+
+
 
 
 }
