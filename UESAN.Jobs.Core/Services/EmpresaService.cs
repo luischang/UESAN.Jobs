@@ -105,6 +105,7 @@ namespace UESAN.Jobs.Core.Services
 
 		public async Task<bool> Update(EmpresaUpdateDTO empresaDTO)
 		{
+			//modifico la empresa
 			var empresa = new Empresa()
 			{
 				IdEmpresa = empresaDTO.IdEmpresa,
@@ -112,9 +113,21 @@ namespace UESAN.Jobs.Core.Services
 				Ruc = empresaDTO.Ruc,
 				Telefono = empresaDTO.Telefono,
 				Direccion = empresaDTO.Direccion,
-				IdUsuario = empresaDTO.IdUsuario
+				IdUsuario = empresaDTO.UpdateUsuario.IdUsuario,
+				
 			};
-			return await _empresaRepository.Update(empresa);
+			//modifico el usuario
+			var usuario = new Usuario()
+			{
+				IdUsuario = empresaDTO.UpdateUsuario.IdUsuario,
+				Correo = empresaDTO.UpdateUsuario.Correo,
+				Password = empresaDTO.UpdateUsuario.Password,
+				Tipo = "empresa",
+				Estado = true,
+		
+			};
+			
+			return await _empresaRepository.Update(empresa) && await _usuarioRepository.update(usuario);
 		}
 
 		public async Task<bool> Delete(int id)
@@ -122,6 +135,9 @@ namespace UESAN.Jobs.Core.Services
 			var idUsuario = await _empresaRepository.GetIdUsuario(id);
 			 return await _empresaRepository.delete(id) && await _usuarioRepository.delete(idUsuario);
 		}
+
+
+		
 
 
 	}

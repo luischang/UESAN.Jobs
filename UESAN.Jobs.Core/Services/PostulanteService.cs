@@ -110,18 +110,27 @@ namespace UESAN.Jobs.Core.Services
 
 		public async Task<bool> Update(PostulanteUpdateDTO postulanteUpdateDTO)
 		{
+			//creamos el objeto postulante 
 			var postulante = new Postulante()
 			{
-				IdUsuario = postulanteUpdateDTO.IdUsuario,
 				IdPostulante = postulanteUpdateDTO.IdPostulante,
 				Nombre = postulanteUpdateDTO.Nombre,
 				Dni = postulanteUpdateDTO.Dni,
 				Direccion = postulanteUpdateDTO.Direccion,
 				Telefono = postulanteUpdateDTO.Telefono,
 				Cv = postulanteUpdateDTO.Cv,
-				Certificados = postulanteUpdateDTO.Certificados
-
+				Certificados = postulanteUpdateDTO.Certificados,
+				IdUsuario = postulanteUpdateDTO.UpdateUsuario.IdUsuario,
 			};
+			var usuario = new Usuario()
+			{
+				IdUsuario = postulanteUpdateDTO.UpdateUsuario.IdUsuario,
+				Correo = postulanteUpdateDTO.UpdateUsuario?.Correo,
+				Password = postulanteUpdateDTO.UpdateUsuario.Password,
+				Tipo = "postulante",
+				Estado = true,
+			};
+
 			return await _postulanteRepository.update(postulante);
 		}
 
@@ -130,5 +139,7 @@ namespace UESAN.Jobs.Core.Services
 			var idUsuario = await _postulanteRepository.GetIdUsuario(id);
 			return await _postulanteRepository.delete(id) && await _usuarioRepository.delete(idUsuario);
 		}
+
+		
 	}
 }
