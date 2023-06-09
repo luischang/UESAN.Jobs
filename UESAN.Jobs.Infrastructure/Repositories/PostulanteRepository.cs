@@ -21,7 +21,7 @@ namespace UESAN.Jobs.Infrastructure.Repositories
 		public async Task<IEnumerable<Postulante>> GetAll()
 		{
 			return await _context.Postulante
-				.Where(x => x.Nombre != "eliminado")
+				.Where(x => x.IdUsuarioNavigation.Estado == true)
 				.Include(z => z.IdUsuarioNavigation)
 				.ToListAsync();
 		}
@@ -29,7 +29,7 @@ namespace UESAN.Jobs.Infrastructure.Repositories
 		public async Task<Postulante> GetById(int id)
 		{
 			return await _context.Postulante
-				.Where(y => y.IdPostulante == id)
+				.Where(y => y.IdPostulante == id && y.IdUsuarioNavigation.Estado == true)
 				.Include(x => x.IdUsuarioNavigation)
 				.FirstOrDefaultAsync();
 		}
@@ -64,10 +64,12 @@ namespace UESAN.Jobs.Infrastructure.Repositories
 			{
 				return false;
 			}
-			emp.Nombre = "eliminado";
+			emp.IdUsuarioNavigation.Estado = false;
 			int rows = await _context.SaveChangesAsync();
 			return rows > 0;
 		}
+
+		
 
 
 
