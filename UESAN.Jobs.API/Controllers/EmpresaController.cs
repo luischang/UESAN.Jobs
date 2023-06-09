@@ -2,16 +2,17 @@
 using Microsoft.AspNetCore.Mvc;
 using UESAN.Jobs.Core.DTOs;
 using UESAN.Jobs.Core.Interfaces;
+using UESAN.Jobs.Core.Services;
 
 namespace UESAN.Jobs.API.Controllers
 {
 	[Route("api/[controller]")]
 	[ApiController]
-	public class EmpresaControler : ControllerBase
+	public class EmpresaController : ControllerBase
 	{
 		private readonly IEmpresaService _empresaServices;
 
-		public EmpresaControler(IEmpresaService empresaServices) 
+		public EmpresaController(IEmpresaService empresaServices) 
 		{
 			_empresaServices = empresaServices;
 		
@@ -57,7 +58,6 @@ namespace UESAN.Jobs.API.Controllers
 				return NotFound();
 			return Ok(result);
 		}
-
 
 
 

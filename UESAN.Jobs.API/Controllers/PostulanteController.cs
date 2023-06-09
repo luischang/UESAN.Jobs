@@ -8,11 +8,11 @@ namespace UESAN.Jobs.API.Controllers
 {
 	[Route("api/[controller]")]
 	[ApiController]
-	public class PostulanteControler : ControllerBase
+	public class PostulanteController : ControllerBase
 	{
 		private readonly IPostulanteService _postulanteService;
 
-		public PostulanteControler(IPostulanteService postulanteService) 
+		public PostulanteController(IPostulanteService postulanteService) 
 		{
 			_postulanteService = postulanteService;
 		}
@@ -57,7 +57,6 @@ namespace UESAN.Jobs.API.Controllers
 				return NotFound();
 			return Ok(result);
 		}
-
 
 
 	}

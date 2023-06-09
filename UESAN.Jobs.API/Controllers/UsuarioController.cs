@@ -8,11 +8,11 @@ namespace UESAN.Jobs.API.Controllers
 {
 	[Route("api/[controller]")]
 	[ApiController]
-	public class UsuarioControler : ControllerBase
+	public class UsuarioController : ControllerBase
 	{
 		private readonly IUsuarioService _usuarioService;
 
-		public UsuarioControler(IUsuarioService usuarioService) 
+		public UsuarioController(IUsuarioService usuarioService) 
 		{
 			_usuarioService = usuarioService;
 		}

@@ -8,11 +8,11 @@ namespace UESAN.Jobs.API.Controllers
 {
 	[Route("api/[controller]")]
 	[ApiController]
-	public class OfertaControler : ControllerBase
+	public class OfertaController : ControllerBase
 	{
 		private readonly IOfertaService _ofertaService;
 
-		public OfertaControler(IOfertaService oferta) 
+		public OfertaController(IOfertaService oferta) 
 		{
 			_ofertaService = oferta;
 		}
