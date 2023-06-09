@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 using UESAN.Jobs.Core.DTOs;
 using UESAN.Jobs.Core.Entities;
 using UESAN.Jobs.Core.Interfaces;
-using UESAN.Jobs.Infrastructure.Repositories;
 
 namespace UESAN.Jobs.Core.Services
 {
-    public class OfertaPostularService : IOfertaPostularService
+	public class OfertaPostularService : IOfertaPostularService
 	{
 		private readonly IOfertaPostularRepository _ofertaPostularRepository;
 		private readonly IOfertaRepository _ofertaRepository;
@@ -94,23 +93,11 @@ namespace UESAN.Jobs.Core.Services
 
 		public async Task<bool> Insert(OfertaPostularInsertDTO ofertaPostularInsertDTO)
 		{
-			var postulante = new PostulanteOfertaPostularInsertDTO()
-			{
-				IdPostulante = ofertaPostularInsertDTO.Postulante.IdPostulante,
-				Nombre = ofertaPostularInsertDTO.Postulante.Nombre
-			};
-
-			var oferta = new OfertOfertaPostularInsertDTO()
-			{
-				IdOferta = ofertaPostularInsertDTO.Oferta.IdOferta,
-				Descripcion = ofertaPostularInsertDTO.Oferta.Descripcion
-			};
-
 			var ofertaE = await _ofertaRepository
-				.GetById(oferta.IdOferta);
+				.GetById(ofertaPostularInsertDTO.Oferta.IdOferta);  
 
 			var postulanteE = await _postulanteRepository
-				.GetById(postulante.IdPostulante);
+				.GetById(ofertaPostularInsertDTO.Postulante.IdPostulante);
 
 			if (ofertaE != null && postulanteE != null)
 			{

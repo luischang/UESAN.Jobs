@@ -97,8 +97,6 @@ namespace UESAN.Jobs.Core.DTOs
 	{
 		public int IdPostulante { get; set; }
 
-		public string? Nombre { get; set; }
-
 	}
 
 

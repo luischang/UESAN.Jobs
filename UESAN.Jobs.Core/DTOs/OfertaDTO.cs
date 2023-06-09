@@ -124,7 +124,6 @@ namespace UESAN.Jobs.Core.DTOs
 	{
 		public int IdOferta { get; set; }
 
-		public string? Descripcion { get; set; }
 
 	}
 	
