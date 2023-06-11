@@ -38,7 +38,6 @@ namespace UESAN.Jobs.Core.Services
 				},
 				Postulante = new PostulanteDescDTO
 				{
-					IdPostulante = e.IdPostulanteNavigation.IdPostulante,
 					Nombre = e.IdPostulanteNavigation.Nombre
 				}
 
@@ -64,7 +63,6 @@ namespace UESAN.Jobs.Core.Services
 				},
 				Postulante = new PostulanteDescDTO
 				{
-					IdPostulante = ofertaP.IdPostulanteNavigation.IdPostulante,
 					Nombre = ofertaP.IdPostulanteNavigation.Nombre
 				}
 

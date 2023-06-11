@@ -77,8 +77,6 @@ namespace UESAN.Jobs.Core.Services
 
 		public async Task<bool> Update(OfertaUpdateDTO ofertaUpdate)
 		{
-
-
 			var oferta = new Oferta()
 			{
 				IdEmpresa = ofertaUpdate.IdEmpresa,

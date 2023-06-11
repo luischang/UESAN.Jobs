@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 using UESAN.Jobs.Core.DTOs;
 using UESAN.Jobs.Core.Entities;
 using UESAN.Jobs.Core.Interfaces;
-using UESAN.Jobs.Infrastructure.Repositories;
 
 namespace UESAN.Jobs.Core.Services
 {
-    public class CompetenciasOfertaService : ICompetenciasOfertaService
+	public class CompetenciasOfertaService : ICompetenciasOfertaService
 	{
 		private readonly ICompetenciasOfertaRepository _competenciasOfertaRepository;
 

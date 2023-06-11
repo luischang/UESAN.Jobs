@@ -1,6 +1,6 @@
 ﻿using UESAN.Jobs.Core.Entities;
 
-namespace UESAN.Jobs.Infrastructure.Repositories
+namespace UESAN.Jobs.Core.Interfaces
 {
 	public interface ICompetenciasOfertaRepository
 	{
