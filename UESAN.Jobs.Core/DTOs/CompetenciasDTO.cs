@@ -23,4 +23,9 @@ namespace UESAN.Jobs.Core.DTOs
 		public int IdCompetencia { get; set; }
 		public string? Descripcion { get; set; }
 	}
+
+	public class CompetenciasDescripcionDTO
+	{
+		public string? Descripcion { get; set; }
+	}
 }

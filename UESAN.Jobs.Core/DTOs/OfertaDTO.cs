@@ -126,5 +126,11 @@ namespace UESAN.Jobs.Core.DTOs
 
 
 	}
+
+	public class OfertaDescripcionDTO 
+	{
+		public string? Descripcion { get; set; }
+		public EmpresaDescDTO Empresa { get; set; }
+	}
 	
 }
