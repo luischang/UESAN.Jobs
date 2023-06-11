@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="cbea6f1d-37f4-4c89-99fb-1ac981749d8f" ChangeDateTime="06/09/2023 01:17:37">
+    <Property Name="ElementName" Value="[dbo].[Competencias].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Competencias]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="IdCompetencia" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="368964ca-5e47-4c8a-9f8e-cbd8df5726f1" ChangeDateTime="06/09/2023 01:20:12">
+    <Property Name="ElementName" Value="[dbo].[CompetenciasPostulante].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[CompetenciasPostulante]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="IdCompetencia" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="3a3f8ee9-7138-40ce-9eb8-cc60f30666e5" ChangeDateTime="06/11/2023 10:37:33">
+    <Property Name="ElementName" Value="[dbo].[Calificaciones].[Estado]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Calificaciones]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Calificacion" />
+  </Operation>
+</Operations>

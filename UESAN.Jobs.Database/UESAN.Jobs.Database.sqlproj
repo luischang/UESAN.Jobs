@@ -68,5 +68,12 @@
     <Build Include="dbo\Tables\Empresa.sql" />
     <Build Include="dbo\Tables\Oferta.sql" />
     <Build Include="dbo\Tables\OfertaPostular.sql" />
+    <Build Include="dbo\Tables\Competencias.sql" />
+    <Build Include="dbo\Tables\CompetenciasPostulante.sql" />
+    <Build Include="dbo\Tables\CompetenciasOferta.sql" />
+    <Build Include="dbo\Tables\Calificaciones.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="UESAN.Jobs.Database.refactorlog" />
   </ItemGroup>
 </Project>
