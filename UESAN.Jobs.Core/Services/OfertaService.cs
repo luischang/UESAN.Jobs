@@ -77,6 +77,7 @@ namespace UESAN.Jobs.Core.Services
 
 		public async Task<bool> Update(OfertaUpdateDTO ofertaUpdate)
 		{
+
 			var oferta = new Oferta()
 			{
 				IdEmpresa = ofertaUpdate.IdEmpresa,
@@ -102,13 +103,7 @@ namespace UESAN.Jobs.Core.Services
 
 		public async Task<bool> Insert(OfertaInsert ofertaInsert)
 		{
-			var emp = new EmpresaOfertaInsertDTO()
-			{
-				IdEmpresa = ofertaInsert.Empresa.IdEmpresa,
-				Nombre = ofertaInsert.Empresa.Nombre,
-			};
-
-			var empresaId = await _empresaRepository.GetById(emp.IdEmpresa);
+			var empresaId = await _empresaRepository.GetById(ofertaInsert.Empresa.IdEmpresa);
 
 			if (empresaId!= null )
 			{

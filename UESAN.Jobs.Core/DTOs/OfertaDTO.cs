@@ -86,8 +86,6 @@ namespace UESAN.Jobs.Core.DTOs
 		public bool? Estado { get; set; }
 
 		public DateTime? FechaCreacion { get; set; }
-
-
 	}
 
 	public class OfertaInsert

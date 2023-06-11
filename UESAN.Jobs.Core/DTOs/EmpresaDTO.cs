@@ -96,7 +96,6 @@ namespace UESAN.Jobs.Core.DTOs
 	public class EmpresaOfertaInsertDTO 
 	{
 		public int IdEmpresa { get; set; }
-		public string? Nombre { get; set; }
 
 	}
 
