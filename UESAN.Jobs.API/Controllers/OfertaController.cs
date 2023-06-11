@@ -33,7 +33,7 @@ namespace UESAN.Jobs.API.Controllers
 			return Ok(oferta);
 		}
 
-		[HttpGet("{GetById}")]
+		[HttpGet("{id}")]
 		public async Task<IActionResult> GetById(int id)
 		{
 			var result = await _ofertaService.GetById(id);
@@ -43,15 +43,11 @@ namespace UESAN.Jobs.API.Controllers
 			
 		}
 
-		[HttpPut("{UpdateById}")]
-		public async Task<IActionResult> Update(int id, OfertaUpdateDTO oferta, int postulantes)
+		[HttpPut("{id}")]
+		public async Task<IActionResult> Update(int id, OfertaUpdateDTO oferta)
 		{
-			if(postulantes <= 0) { //si hay como minimo 1 postulacion en la oferta, esta no se podra modificar
 				var result = await _ofertaService.Update(oferta);
 				return Ok(result);
-			}
-			return Ok("Tienes como minimo una postulacion, no puedes modificar esta oferta");
-
 		}
 
 		[HttpDelete]

@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 using UESAN.Jobs.Core.DTOs;
 using UESAN.Jobs.Core.Entities;
 using UESAN.Jobs.Core.Interfaces;
-using UESAN.Jobs.Infrastructure.Repositories;
 
 namespace UESAN.Jobs.Core.Services
 {
-    public class OfertaService : IOfertaService
+	public class OfertaService : IOfertaService
 	{
 		private readonly IOfertaRepository _ofertaRepository;
 		private readonly IEmpresaRepository _empresaRepository;
@@ -78,6 +77,8 @@ namespace UESAN.Jobs.Core.Services
 
 		public async Task<bool> Update(OfertaUpdateDTO ofertaUpdate)
 		{
+
+
 			var oferta = new Oferta()
 			{
 				IdEmpresa = ofertaUpdate.IdEmpresa,

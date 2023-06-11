@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UESAN.Jobs.Core.Entities;
+using UESAN.Jobs.Core.Interfaces;
 using UESAN.Jobs.Infrastructure.Models;
 
 namespace UESAN.Jobs.Infrastructure.Repositories

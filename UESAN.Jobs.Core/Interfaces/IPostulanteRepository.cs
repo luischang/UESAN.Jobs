@@ -1,6 +1,6 @@
 ﻿using UESAN.Jobs.Core.Entities;
 
-namespace UESAN.Jobs.Infrastructure.Repositories
+namespace UESAN.Jobs.Core.Interfaces
 {
 	public interface IPostulanteRepository
 	{
@@ -8,7 +8,7 @@ namespace UESAN.Jobs.Infrastructure.Repositories
 		Task<Postulante> GetById(int id);
 		Task<bool> Insert(Postulante postulante);
 		Task<bool> update(Postulante postulante);
-		
+
 		Task<int> GetIdUsuario(int id);
 
 		Task<bool> delete(int id);

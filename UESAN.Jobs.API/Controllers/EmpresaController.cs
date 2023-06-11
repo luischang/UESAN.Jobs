@@ -34,7 +34,7 @@ namespace UESAN.Jobs.API.Controllers
 			return Ok(empresa);
 		}
 
-		[HttpGet("{idEmpresa}")]
+		[HttpGet("{id}")]
 		public async Task<IActionResult> GetById(int id)
 		{
 			var result = await _empresaServices.GetById(id);

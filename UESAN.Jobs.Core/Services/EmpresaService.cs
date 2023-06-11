@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 using UESAN.Jobs.Core.DTOs;
 using UESAN.Jobs.Core.Entities;
 using UESAN.Jobs.Core.Interfaces;
-using UESAN.Jobs.Infrastructure.Repositories;
 
 namespace UESAN.Jobs.Core.Services
 {
-    public class EmpresaService :IEmpresaService
+	public class EmpresaService :IEmpresaService
 	{
 		private readonly IEmpresaRepository _empresaRepository;
 		private readonly UsuarioService _usuarioService;

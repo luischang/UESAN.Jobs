@@ -16,6 +16,14 @@ public partial class BolsaDeTrabajoContext : DbContext
     {
     }
 
+    public virtual DbSet<Calificaciones> Calificaciones { get; set; }
+
+    public virtual DbSet<Competencias> Competencias { get; set; }
+
+    public virtual DbSet<CompetenciasOferta> CompetenciasOferta { get; set; }
+
+    public virtual DbSet<CompetenciasPostulante> CompetenciasPostulante { get; set; }
+
     public virtual DbSet<Empresa> Empresa { get; set; }
 
     public virtual DbSet<Oferta> Oferta { get; set; }
@@ -32,6 +40,62 @@ public partial class BolsaDeTrabajoContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<Calificaciones>(entity =>
+        {
+            entity.HasNoKey();
+
+            entity.Property(e => e.IdEmpresa).HasColumnName("idEmpresa");
+
+            entity.HasOne(d => d.IdEmpresaNavigation).WithMany()
+                .HasForeignKey(d => d.IdEmpresa)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__Calificac__idEmp__6EF57B66");
+
+            entity.HasOne(d => d.IdPostulanteNavigation).WithMany()
+                .HasForeignKey(d => d.IdPostulante)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__Calificac__IdPos__6FE99F9F");
+        });
+
+        modelBuilder.Entity<Competencias>(entity =>
+        {
+            entity.HasKey(e => e.IdCompetencia).HasName("PK__Competen__DA802ADD8B5C52C3");
+
+            entity.Property(e => e.Descripcion)
+                .HasMaxLength(30)
+                .IsFixedLength();
+        });
+
+        modelBuilder.Entity<CompetenciasOferta>(entity =>
+        {
+            entity.HasNoKey();
+
+            entity.HasOne(d => d.IdCompetenciaNavigation).WithMany()
+                .HasForeignKey(d => d.IdCompetencia)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__Competenc__IdCom__5EBF139D");
+
+            entity.HasOne(d => d.IdOfertaNavigation).WithMany()
+                .HasForeignKey(d => d.IdOferta)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__Competenc__IdOfe__5FB337D6");
+        });
+
+        modelBuilder.Entity<CompetenciasPostulante>(entity =>
+        {
+            entity.HasNoKey();
+
+            entity.HasOne(d => d.IdCompetenciaNavigation).WithMany()
+                .HasForeignKey(d => d.IdCompetencia)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__Competenc__IdCom__60A75C0F");
+
+            entity.HasOne(d => d.IdPostulanteNavigation).WithMany()
+                .HasForeignKey(d => d.IdPostulante)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__Competenc__IdPos__619B8048");
+        });
+
         modelBuilder.Entity<Empresa>(entity =>
         {
             entity.HasKey(e => e.IdEmpresa).HasName("PK__tmp_ms_x__75D2CED4D046BF07");

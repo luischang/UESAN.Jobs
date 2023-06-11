@@ -6,17 +6,16 @@ using System.Threading.Tasks;
 using UESAN.Jobs.Core.DTOs;
 using UESAN.Jobs.Core.Entities;
 using UESAN.Jobs.Core.Interfaces;
-using UESAN.Jobs.Infrastructure.Repositories;
 
 namespace UESAN.Jobs.Core.Services
 {
-    public class UsuarioService : IUsuarioService
+	public class UsuarioService : IUsuarioService
 	{
 		private readonly IUsuarioRepository _usuarioRepository;
 		private int id = 1000;
 
 		public UsuarioService(IUsuarioRepository usuarioRepository)
-		{
+		{ 
 			_usuarioRepository = usuarioRepository;
 		}
 

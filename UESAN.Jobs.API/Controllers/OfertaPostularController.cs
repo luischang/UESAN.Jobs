@@ -33,7 +33,7 @@ namespace UESAN.Jobs.API.Controllers
 			return Ok(oferta);
 		}
 
-		[HttpGet("{GetById}")]
+		[HttpGet("{id}")]
 		public async Task<IActionResult> GetById(int id)
 		{
 			var result = await _ofertaPostularService.GetById(id);
@@ -42,7 +42,7 @@ namespace UESAN.Jobs.API.Controllers
 			return Ok(result);
 		}
 
-		[HttpPut("{UpdateById}")]
+		[HttpPut("{id}")]
 		public async Task<IActionResult> Update(int id, OfertaPostularUpdateDTO oferta)
 		{
 			var result = await _ofertaPostularService.Update(oferta);
