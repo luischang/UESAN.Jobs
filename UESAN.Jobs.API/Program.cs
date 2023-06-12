@@ -34,7 +34,8 @@ builder.Services.AddTransient<ICompetenciasOfertaRepository,CompetenciasOfertaRe
 builder.Services.AddTransient<ICompetenciasOfertaService, CompetenciasOfertaService>();
 builder.Services.AddTransient<ICompetenciasPostulanteRepository, CompetenciasPostulanteRepository>();
 builder.Services.AddTransient<ICompetenciasPostulanteService,  CompetenciasPostulanteService>();
-
+builder.Services.AddTransient<ICalificacionRespository, CalificacionRespository>();
+builder.Services.AddTransient<ICalificacionesServices, CalificacionesServices>();
 
 builder.Services.AddControllers();
 
