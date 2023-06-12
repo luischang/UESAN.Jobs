@@ -42,8 +42,8 @@ namespace UESAN.Jobs.API.Controllers
 			return Ok(result);
 		}
 
-		[HttpPut("{id}")]
-		public async Task<IActionResult> Update(int id, PostulanteUpdateDTO postulanteUpdateDTO)
+		[HttpPut]
+		public async Task<IActionResult> Update( PostulanteUpdateDTO postulanteUpdateDTO)
 		{
 			var result = await _postulanteService.Update(postulanteUpdateDTO);
 			return Ok(result);

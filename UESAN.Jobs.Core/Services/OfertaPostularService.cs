@@ -70,6 +70,30 @@ namespace UESAN.Jobs.Core.Services
 			return ofertaDTO;
 		}
 
+		public async Task<IEnumerable<OfertaPostularPostulanteDTO>> GetAllPostulanteByIdOferta(int idoferta) 
+		{
+			var ofertasP = await _ofertaPostularRepository.GetAllPostulantesByIdOferta(idoferta);
+			if (ofertasP != null)
+			{
+				var oppDTO = ofertasP.Select(x => new OfertaPostularPostulanteDTO
+				{
+					IdOfertaPostular = x.IdOfertaPostular,
+					PostulanteDescripcion = new PostulanteDescripcionDTO
+					{
+						IdPostulante = x.IdPostulanteNavigation.IdPostulante,
+						Nombre = x.IdPostulanteNavigation.Nombre,
+						Usuario = new UsuarioDescripcionCorreoDTO
+						{
+							Correo = x.IdPostulanteNavigation.IdUsuarioNavigation.Correo
+						}
+					}
+				});
+				return oppDTO;
+			}
+			return null;
+			
+		}
+
 		public async Task<bool> Update(OfertaPostularUpdateDTO ofertaPostularUpdateDTO)
 		{
 			var ofertaP = new OfertaPostular()

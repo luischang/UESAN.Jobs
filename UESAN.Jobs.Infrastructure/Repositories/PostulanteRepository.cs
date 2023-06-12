@@ -70,8 +70,6 @@ namespace UESAN.Jobs.Infrastructure.Repositories
 			return rows > 0;
 		}
 
-		
-
 
 
 	}

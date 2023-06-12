@@ -9,5 +9,6 @@ namespace UESAN.Jobs.Core.Interfaces
 		Task<bool> Insert(OfertaPostular ofertapostular);
 		Task<bool> Update(OfertaPostular ofertaPostular);
 		Task<bool> delete(int id);
+		Task<IEnumerable<OfertaPostular>> GetAllPostulantesByIdOferta(int idoferta);
 	}
 }

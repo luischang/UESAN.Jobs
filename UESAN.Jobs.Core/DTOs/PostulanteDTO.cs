@@ -100,6 +100,14 @@ namespace UESAN.Jobs.Core.DTOs
 
 	}
 
+	public class PostulanteDescripcionDTO 
+	{
+		public int IdPostulante { get; set; }
+		public string? Nombre { get; set; }
+
+		public UsuarioDescripcionCorreoDTO Usuario { get; set; }
+	}
+
 
 
 

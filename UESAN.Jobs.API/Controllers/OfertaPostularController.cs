@@ -42,8 +42,8 @@ namespace UESAN.Jobs.API.Controllers
 			return Ok(result);
 		}
 
-		[HttpPut("{id}")]
-		public async Task<IActionResult> Update(int id, OfertaPostularUpdateDTO oferta)
+		[HttpPut]
+		public async Task<IActionResult> Update( OfertaPostularUpdateDTO oferta)
 		{
 			var result = await _ofertaPostularService.Update(oferta);
 			return Ok(result);
@@ -55,6 +55,15 @@ namespace UESAN.Jobs.API.Controllers
 			var result = await _ofertaPostularService.Delete(id);
 			if (!result)
 				return NotFound();
+			return Ok(result);
+		}
+
+		[HttpGet("{id}/GetPostulantesByIdOferta")]
+		public async Task<IActionResult> GetPostulantesByOferta(int id)
+		{
+			var result = await _ofertaPostularService.GetAllPostulanteByIdOferta(id);
+			if (result == null)
+				return NotFound("No hay postulantes para esta oferta");
 			return Ok(result);
 		}
 

@@ -54,4 +54,11 @@ namespace UESAN.Jobs.Core.DTOs
 		public DateTime? Fecha { get; set; }
 
 	}
+
+	public class OfertaPostularPostulanteDTO 
+	{
+		public int IdOfertaPostular { get; set; }
+		public PostulanteDescripcionDTO PostulanteDescripcion { get; set; }
+
+	}
 }

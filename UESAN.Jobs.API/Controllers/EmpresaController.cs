@@ -43,11 +43,12 @@ namespace UESAN.Jobs.API.Controllers
 			return Ok(result);
 		}
 
-		[HttpPut("{id}")]
-		public async Task<IActionResult> Update(int id, EmpresaUpdateDTO empresaUpdateDTO)
+		[HttpPut]
+		public async Task<IActionResult> Update( EmpresaUpdateDTO empresaUpdateDTO)
 		{
-			var result = await _empresaServices.Update(empresaUpdateDTO);
-			return Ok(result);
+				var result = await _empresaServices.Update(empresaUpdateDTO);
+				return Ok(result);
+			
 		}
 
 		[HttpDelete]

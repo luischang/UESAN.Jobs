@@ -67,6 +67,20 @@ namespace UESAN.Jobs.Infrastructure.Repositories
 			return rows > 0;
 		}
 
+		public async Task<IEnumerable<OfertaPostular>> GetAllPostulantesByIdOferta(int idoferta) 
+		{
+			var ofertasPOs =  await _context.OfertaPostular
+				.Where(x => x.IdOfertaNavigation.IdOferta == idoferta && x.Estado == true)
+				.Include(z=>z.IdPostulanteNavigation).Include(s => s.IdOfertaNavigation)
+				.ToListAsync();
+
+			if (ofertasPOs.Any())
+			{
+				return ofertasPOs;
+			}
+			return null;
+		}
+
 
 	}
 }

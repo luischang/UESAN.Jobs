@@ -43,8 +43,8 @@ namespace UESAN.Jobs.API.Controllers
 			return Ok(result);
 		}
 
-		[HttpPut("{id}")]
-		public async Task<IActionResult> Update(int id, CompetenciasUpdateDTO competenciasUpdate)
+		[HttpPut]
+		public async Task<IActionResult> Update( CompetenciasUpdateDTO competenciasUpdate)
 		{
 			var result = await _competenciasService.Update(competenciasUpdate);
 			return Ok(result);

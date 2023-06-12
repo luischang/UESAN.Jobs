@@ -9,5 +9,8 @@ namespace UESAN.Jobs.Core.Interfaces
         Task<OfertaPostularOfertaDTO> GetById(int id);
         Task<bool> Insert(OfertaPostularInsertDTO ofertaPostularInsertDTO);
         Task<bool> Update(OfertaPostularUpdateDTO ofertaPostularUpdateDTO);
-    }
+
+        Task<IEnumerable<OfertaPostularPostulanteDTO>> GetAllPostulanteByIdOferta(int idoferta);
+
+	}
 }
