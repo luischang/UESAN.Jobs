@@ -128,6 +128,29 @@ namespace UESAN.Jobs.Core.Services
 			return false;
 		}
 
+		public async Task<IEnumerable<OfertaDTO>> GetAllOfertasByEmpresa(int idempresa)
+		{
+			var ofertas = await _ofertaRepository.GetAllOfertasByEmpresa(idempresa);
+			if(ofertas != null) 
+			{
+				var ofertaDTO = ofertas.Select(e => new OfertaDTO
+				{
+					IdOferta = e.IdOferta,
+					IdEmpresa = e.IdEmpresa,
+					Certificados = e.Certificados,
+					Descripcion = e.Descripcion,
+					Estado = e.Estado,
+					FechaCreacion = e.FechaCreacion,
+					Funciones = e.Funciones,
+					Modalidad = e.Modalidad,
+					Puesto = e.Puesto,
+					Requisitos = e.Requisitos,
+					Ubicacion = e.Ubicacion
 
+				});
+				return ofertaDTO;
+			}
+			return null;
+		}
 	}
 }

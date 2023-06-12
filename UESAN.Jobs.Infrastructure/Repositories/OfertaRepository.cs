@@ -56,5 +56,15 @@ namespace UESAN.Jobs.Infrastructure.Repositories
 			int rows = await _context.SaveChangesAsync();
 			return rows > 0;
 		}
+
+		public async Task<IEnumerable<Oferta>> GetAllOfertasByEmpresa(int id) //ofertas hechas por una empresa
+		{
+			var ofertas = await _context.Oferta.Where(x=> x.IdEmpresa == id).ToListAsync();
+			if(ofertas.Any()) 
+			{
+				return ofertas;
+			}
+			return null;
+		}
 	}
 }

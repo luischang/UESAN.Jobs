@@ -31,9 +31,6 @@ namespace UESAN.Jobs.Core.DTOs
 
 		public DateTime? FechaCreacion { get; set; }
 
-		public virtual Empresa? IdEmpresaNavigation { get; set; }
-
-		public virtual ICollection<OfertaPostular> OfertaPostular { get; set; } = new List<OfertaPostular>();
 	}
 
 	public class OfertaEmpresaDTO

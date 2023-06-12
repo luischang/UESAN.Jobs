@@ -60,5 +60,14 @@ namespace UESAN.Jobs.API.Controllers
 		}
 
 
+		[HttpGet("{id}/GetByEmpresa")]
+		public async Task<IActionResult> GetOfertasByEmpresa(int id)
+		{
+			var result = await _ofertaService.GetAllOfertasByEmpresa(id);
+			if (result == null)
+				return NotFound("No hay ofertas creadas por la empresa");
+			return Ok(result);
+		}
+
 	}
 }
