@@ -9,6 +9,7 @@ namespace UESAN.Jobs.Core.Interfaces
         Task<UsuarioAuthResponseDTO> validate(string correo, string contra);
 
         Task<Usuario> GetUsuCreateByCorreo(UsuarioAuthRequestDTO usuDTO);
+        Task<bool> CreateAdmin(UsuarioPerfil usuDTO);
 
 	}
 }

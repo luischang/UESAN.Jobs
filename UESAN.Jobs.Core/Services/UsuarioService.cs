@@ -57,6 +57,26 @@ namespace UESAN.Jobs.Core.Services
 
 		}
 
+		public async Task<bool> CreateAdmin(UsuarioPerfil usuDTO) 
+		{
+			var correoResult = await _usuarioRepository.IsEmailRegistered(usuDTO.Correo);
+
+			if (correoResult) 
+			{
+				return false;
+			}
+			var usuario = new Usuario()
+			{
+				Tipo = "admin",
+				Estado = true,
+				Correo = usuDTO.Correo,
+				Password = usuDTO.Password,
+
+			};
+			var result = await _usuarioRepository.SignUp(usuario);
+			return result;
+		}
+
 		public async Task<Usuario> GetUsuCreateByCorreo(UsuarioAuthRequestDTO usuDTO) 
 		{
 			return  await _usuarioRepository.GetId(usuDTO.Correo);

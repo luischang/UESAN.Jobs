@@ -34,6 +34,18 @@ namespace UESAN.Jobs.API.Controllers
 			if (!result) { return BadRequest(); }
 			else { return Ok(result); }
 		}
+
+		[HttpPost("SignUp/admin")]
+		public async Task<IActionResult> SignUpAdmin(UsuarioPerfil up)
+		{
+			var result = await _usuarioService.CreateAdmin(up);
+			if (!result) { 
+				return BadRequest("No se ha creado el admin");
+			}
+			else { return Ok(result + " _ nuevo admin creado "); }
+		}
+
+
 	}
 
 
