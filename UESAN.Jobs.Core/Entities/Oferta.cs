@@ -27,6 +27,8 @@ public partial class Oferta
 
 	public DateTime? FechaCreacion { get; set; }
 
+	public int? NumeroPostulantes { get; set; }
+
 	public virtual Empresa? IdEmpresaNavigation { get; set; }
 
 	public virtual ICollection<OfertaPostular> OfertaPostular { get; set; } = new List<OfertaPostular>();

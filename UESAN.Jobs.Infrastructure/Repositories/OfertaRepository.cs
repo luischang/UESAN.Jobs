@@ -66,5 +66,12 @@ namespace UESAN.Jobs.Infrastructure.Repositories
 			}
 			return null;
 		}
+
+		public async Task<bool> incrementPostulantes(Oferta o)
+		{
+			o.NumeroPostulantes = o.NumeroPostulantes + 1;
+			int rows =  await _context.SaveChangesAsync();
+			return rows > 0;
+		}
 	}
 }

@@ -10,6 +10,7 @@
     [modalidad]      VARCHAR (50) NULL,
     [estado]         BIT NULL,
     [Fecha_Creacion] DATETIME     NULL,
+    [numeroPostulantes] INT NULL, 
     PRIMARY KEY CLUSTERED ([idOferta] ASC),
     FOREIGN KEY ([idEmpresa]) REFERENCES [dbo].[Empresa] ([idEmpresa])
 );

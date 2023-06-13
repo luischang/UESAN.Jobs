@@ -29,6 +29,8 @@ namespace UESAN.Jobs.Core.DTOs
 
 		public bool? Estado { get; set; }
 
+		public int? NumeroPostulantes { get; set; }
+
 		public DateTime? FechaCreacion { get; set; }
 
 	}
@@ -51,6 +53,8 @@ namespace UESAN.Jobs.Core.DTOs
 		public string? Modalidad { get; set; }
 
 		public bool? Estado { get; set; }
+
+		public int? NumeroPostulantes { get; set; }
 
 		public DateTime? FechaCreacion { get; set; }
 
@@ -83,6 +87,8 @@ namespace UESAN.Jobs.Core.DTOs
 		public bool? Estado { get; set; }
 
 		public DateTime? FechaCreacion { get; set; }
+
+		public int? NumeroPostulantes { get; set; }
 	}
 
 	public class OfertaInsert
@@ -127,5 +133,6 @@ namespace UESAN.Jobs.Core.DTOs
 		public string? Descripcion { get; set; }
 		public EmpresaDescDTO Empresa { get; set; }
 	}
+	
 	
 }

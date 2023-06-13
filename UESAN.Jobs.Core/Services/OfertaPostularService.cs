@@ -130,6 +130,7 @@ namespace UESAN.Jobs.Core.Services
 
 		public async Task<bool> Update(OfertaPostularUpdateDTO ofertaPostularUpdateDTO)
 		{
+
 			var ofertaP = new OfertaPostular()
 			{
 				IdOferta = ofertaPostularUpdateDTO.IdOferta,
@@ -154,8 +155,19 @@ namespace UESAN.Jobs.Core.Services
 
 			var postulanteE = await _postulanteRepository
 				.GetById(ofertaPostularInsertDTO.Postulante.IdPostulante);
-
-			if (ofertaE != null && postulanteE != null)
+			//valido que el postulante no haga la postulacion a la misma oferta dos veces:
+			var postulantes = this.GetAllPostulanteByIdOferta(ofertaE.IdOferta);
+			bool apto = true;
+            foreach (var item in await postulantes)
+            {
+                if(item.PostulanteDescripcion.IdPostulante == postulanteE.IdPostulante) 
+				{
+					apto = false;
+					break;
+				}
+            }
+			//si el postulante no esta registrado en esta oferta, se procede a crear la oferta postular
+            if (ofertaE != null && postulanteE != null && apto)
 			{
 
 				var ofertaPostular = new OfertaPostular()
@@ -166,7 +178,9 @@ namespace UESAN.Jobs.Core.Services
 					Estado = true,
 				};
 				var insertarOfertaPostular =  await _ofertaPostularRepository.Insert(ofertaPostular);
-				return insertarOfertaPostular;
+				//modifico la oferta para registrar un nuevo postulante  en ella
+				var updateOferta = await _ofertaRepository.incrementPostulantes(ofertaE); 
+				return insertarOfertaPostular && updateOferta;
 			}
 			return false;
 		}

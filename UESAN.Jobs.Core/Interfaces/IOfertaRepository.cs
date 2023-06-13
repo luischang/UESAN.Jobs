@@ -10,5 +10,7 @@ namespace UESAN.Jobs.Core.Interfaces
 		Task<bool> Update(Oferta oferta);
 		Task<bool> delete(int id);
 		Task<IEnumerable<Oferta>> GetAllOfertasByEmpresa(int id);
+
+		Task<bool> incrementPostulantes(Oferta o);
 	}
 }

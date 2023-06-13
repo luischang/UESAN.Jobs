@@ -36,6 +36,7 @@ namespace UESAN.Jobs.Core.Services
 				Puesto = e.Puesto,
 				Requisitos = e.Requisitos,
 				Ubicacion = e.Ubicacion,
+				NumeroPostulantes = e.NumeroPostulantes,
 				Empresa = new EmpresaDescDTO()
 				{
 					IdEmpresa = e.IdEmpresaNavigation.IdEmpresa,
@@ -64,7 +65,7 @@ namespace UESAN.Jobs.Core.Services
 				Puesto = oferta.Puesto,
 				Requisitos = oferta.Requisitos,
 				Ubicacion = oferta.Ubicacion,
-
+				NumeroPostulantes = oferta.NumeroPostulantes,
 				Empresa = new EmpresaDescDTO()
 				{
 					IdEmpresa = oferta.IdEmpresaNavigation.IdEmpresa,
@@ -78,21 +79,27 @@ namespace UESAN.Jobs.Core.Services
 		public async Task<bool> Update(OfertaUpdateDTO ofertaUpdate)
 		{
 
-			var oferta = new Oferta()
+			if(ofertaUpdate.NumeroPostulantes == 0)
 			{
-				IdEmpresa = ofertaUpdate.IdEmpresa,
-				IdOferta = ofertaUpdate.IdOferta,
-				Descripcion = ofertaUpdate.Descripcion,
-				Funciones = ofertaUpdate.Funciones,
-				Modalidad = ofertaUpdate.Modalidad,
-				Certificados = ofertaUpdate.Certificados,
-				Estado = ofertaUpdate.Estado,
-				FechaCreacion = ofertaUpdate.FechaCreacion,
-				Puesto = ofertaUpdate.Puesto,
-				Requisitos = ofertaUpdate.Requisitos,
-				Ubicacion = ofertaUpdate.Ubicacion,
-			};
-			return await _ofertaRepository.Update(oferta);
+				var oferta = new Oferta()
+				{
+					IdEmpresa = ofertaUpdate.IdEmpresa,
+					IdOferta = ofertaUpdate.IdOferta,
+					Descripcion = ofertaUpdate.Descripcion,
+					Funciones = ofertaUpdate.Funciones,
+					Modalidad = ofertaUpdate.Modalidad,
+					Certificados = ofertaUpdate.Certificados,
+					Estado = ofertaUpdate.Estado,
+					FechaCreacion = ofertaUpdate.FechaCreacion,
+					Puesto = ofertaUpdate.Puesto,
+					Requisitos = ofertaUpdate.Requisitos,
+					Ubicacion = ofertaUpdate.Ubicacion,
+					NumeroPostulantes = ofertaUpdate.NumeroPostulantes
+				};
+				return await _ofertaRepository.Update(oferta);
+			}
+			return false;
+			
 		}
 
 		public async Task<bool> Delete(int id)
@@ -120,6 +127,7 @@ namespace UESAN.Jobs.Core.Services
 					Puesto = ofertaInsert.Puesto,
 					Requisitos = ofertaInsert.Requisitos,
 					Ubicacion = ofertaInsert.Ubicacion,
+					NumeroPostulantes = 0
 
 				};
 				return await _ofertaRepository.Insert(oferta);

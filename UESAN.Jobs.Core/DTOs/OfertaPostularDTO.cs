@@ -44,6 +44,7 @@ namespace UESAN.Jobs.Core.DTOs
 
 		public bool? Estado { get; set; }
 
+
 	}
 
 	public class OfertaPostularInsertDTO
