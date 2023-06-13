@@ -33,7 +33,7 @@ namespace UESAN.Jobs.Infrastructure.Repositories
 		public async Task<OfertaPostular> GetById(int id)
 		{
 			return await _context.OfertaPostular
-				.Where(x => x.IdOfertaPostular == id)
+				.Where(x => x.IdOfertaPostular == id && x.Estado == true)
 				.Include(y => y.IdOfertaNavigation)
 				.Include(z => z.IdPostulanteNavigation)
 				.FirstOrDefaultAsync();
@@ -70,13 +70,27 @@ namespace UESAN.Jobs.Infrastructure.Repositories
 		public async Task<IEnumerable<OfertaPostular>> GetAllPostulantesByIdOferta(int idoferta) 
 		{
 			var ofertasPOs =  await _context.OfertaPostular
-				.Where(x => x.IdOfertaNavigation.IdOferta == idoferta && x.Estado == true)
+				.Where(x => x.IdOfertaNavigation.IdOferta == idoferta && x.Estado == true 
+				&& x.IdOfertaNavigation.IdEmpresaNavigation.IdUsuarioNavigation.Estado == true
+				&& x.IdOfertaNavigation.Estado == true)
 				.Include(z=>z.IdPostulanteNavigation).Include(s => s.IdOfertaNavigation)
 				.ToListAsync();
 
 			if (ofertasPOs.Any())
 			{
 				return ofertasPOs;
+			}
+			return null;
+		}
+
+		public async Task<IEnumerable<OfertaPostular>> GetAllOfertasByIdPostulante(int idpostulante)
+		{
+			var ofertas = await _context.OfertaPostular.Where(x=> x.IdPostulanteNavigation.IdPostulante == idpostulante && x.Estado == true 
+			&& x.IdPostulanteNavigation.IdUsuarioNavigation.Estado == true)
+				.Include(z=> z.IdOfertaNavigation).Include(s=> s.IdPostulanteNavigation) .ToListAsync();
+			if (ofertas.Any())
+			{
+				return ofertas;
 			}
 			return null;
 		}

@@ -67,6 +67,17 @@ namespace UESAN.Jobs.API.Controllers
 			return Ok(result);
 		}
 
+		[HttpGet("{id}/GetOfertasByIdPostulante")]
+		public async Task<IActionResult> GetOfertasByIdPostulante(int id)
+		{
+			var result = await _ofertaPostularService.GetAllOfertasByIdPostulante(id);
+			if (result == null)
+				return NotFound("Esta persona aun no postula ");
+			return Ok(result);
+		}
+
+
+
 
 
 	}

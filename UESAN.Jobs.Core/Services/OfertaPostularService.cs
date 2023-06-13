@@ -94,6 +94,40 @@ namespace UESAN.Jobs.Core.Services
 			
 		}
 
+		public async Task<IEnumerable<OfertaPostularOfertaDTO>> GetAllOfertasByIdPostulante(int idpos) 
+		{
+			var ofertasPostuladas = await _ofertaPostularRepository.GetAllOfertasByIdPostulante(idpos);
+			if(ofertasPostuladas != null) 
+			{
+				var ofertaDTO = ofertasPostuladas.Select(e => new OfertaPostularOfertaDTO
+				{
+					IdOfertaPostular = e.IdOfertaPostular,
+					Fecha = e.Fecha,
+					Estado = e.Estado,
+					
+					Oferta = new OfertaDescDTO
+					{
+						IdOferta = e.IdOfertaNavigation.IdOferta,
+						Descripcion = e.IdOfertaNavigation.Descripcion
+						
+					},
+					Postulante = new PostulanteDescDTO
+					{
+						Nombre = e.IdPostulanteNavigation.Nombre,
+						
+						Usuario = new UsuarioDescripcionCorreoDTO
+						{
+							Correo = e.IdPostulanteNavigation.IdUsuarioNavigation.Correo
+							
+						}
+					}
+
+				});
+				return ofertaDTO;
+			}
+			return null;
+		}
+
 		public async Task<bool> Update(OfertaPostularUpdateDTO ofertaPostularUpdateDTO)
 		{
 			var ofertaP = new OfertaPostular()
@@ -131,8 +165,8 @@ namespace UESAN.Jobs.Core.Services
 					Fecha = ofertaPostularInsertDTO.Fecha,
 					Estado = true,
 				};
-				return await _ofertaPostularRepository.Insert(ofertaPostular);
-
+				var insertarOfertaPostular =  await _ofertaPostularRepository.Insert(ofertaPostular);
+				return insertarOfertaPostular;
 			}
 			return false;
 		}

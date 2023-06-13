@@ -12,5 +12,7 @@ namespace UESAN.Jobs.Core.Interfaces
 
         Task<IEnumerable<OfertaPostularPostulanteDTO>> GetAllPostulanteByIdOferta(int idoferta);
 
+        Task<IEnumerable<OfertaPostularOfertaDTO>> GetAllOfertasByIdPostulante(int idpos);
+
 	}
 }
