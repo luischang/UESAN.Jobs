@@ -35,12 +35,14 @@ namespace UESAN.Jobs.Core.Services
 				{
 					IdOferta = e.IdOfertaNavigation.IdOferta,
 					Descripcion = e.IdOfertaNavigation.Descripcion
+					
 				},
 				Postulante = new PostulanteDescDTO
 				{
 					Nombre = e.IdPostulanteNavigation.Nombre
+					
 				}
-
+				
 			});
 			return ofertaDTO;
 
@@ -73,7 +75,7 @@ namespace UESAN.Jobs.Core.Services
 		public async Task<IEnumerable<OfertaPostularPostulanteDTO>> GetAllPostulanteByIdOferta(int idoferta) 
 		{
 			var ofertasP = await _ofertaPostularRepository.GetAllPostulantesByIdOferta(idoferta);
-			if (ofertasP != null)
+			if (ofertasP!=null)
 			{
 				var oppDTO = ofertasP.Select(x => new OfertaPostularPostulanteDTO
 				{
@@ -113,6 +115,7 @@ namespace UESAN.Jobs.Core.Services
 					},
 					Postulante = new PostulanteDescDTO
 					{
+						
 						Nombre = e.IdPostulanteNavigation.Nombre,
 						
 						Usuario = new UsuarioDescripcionCorreoDTO
@@ -156,16 +159,20 @@ namespace UESAN.Jobs.Core.Services
 			var postulanteE = await _postulanteRepository
 				.GetById(ofertaPostularInsertDTO.Postulante.IdPostulante);
 			//valido que el postulante no haga la postulacion a la misma oferta dos veces:
-			var postulantes = this.GetAllPostulanteByIdOferta(ofertaE.IdOferta);
+			var ofertasPostulares = await _ofertaPostularRepository.GetAllPostulantesByIdOferta(ofertaE.IdOferta);
 			bool apto = true;
-            foreach (var item in await postulantes)
-            {
-                if(item.PostulanteDescripcion.IdPostulante == postulanteE.IdPostulante) 
+			if(postulanteE != null && ofertasPostulares != null)
+			{
+				foreach (var item in ofertasPostulares)
 				{
-					apto = false;
-					break;
+					if (item.IdPostulante == postulanteE.IdPostulante)
+					{
+						apto = false;
+						break;
+					}
 				}
-            }
+			}
+            
 			//si el postulante no esta registrado en esta oferta, se procede a crear la oferta postular
             if (ofertaE != null && postulanteE != null && apto)
 			{
