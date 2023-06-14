@@ -34,10 +34,6 @@ public partial class BolsaDeTrabajoContext : DbContext
 
     public virtual DbSet<Usuario> Usuario { get; set; }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Server=LAPTOP-HP1HJ343\\SOY_YO;DataBase=Bolsa_de_trabajo;TrustServerCertificate=True;Integrated Security=true");
-
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Calificaciones>(entity =>
@@ -110,7 +106,7 @@ public partial class BolsaDeTrabajoContext : DbContext
                 .HasMaxLength(50)
                 .IsUnicode(false);
             entity.Property(e => e.Ruc)
-                .HasMaxLength(10)
+                .HasMaxLength(11)
                 .IsUnicode(false)
                 .HasColumnName("RUC");
             entity.Property(e => e.Telefono)
@@ -133,7 +129,7 @@ public partial class BolsaDeTrabajoContext : DbContext
                 .IsUnicode(false)
                 .HasColumnName("certificados");
             entity.Property(e => e.Descripcion)
-                .HasMaxLength(30)
+                .HasMaxLength(500)
                 .IsUnicode(false)
                 .HasColumnName("descripcion");
             entity.Property(e => e.Estado).HasColumnName("estado");
