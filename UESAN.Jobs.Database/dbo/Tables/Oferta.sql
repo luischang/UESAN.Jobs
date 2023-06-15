@@ -2,7 +2,7 @@
     [idOferta]       INT          NOT NULL IDENTITY,
     [idEmpresa]      INT          NULL,
     [puesto]         VARCHAR (50) NULL,
-    [descripcion]    VARCHAR (30) NULL,
+    [descripcion]    VARCHAR (500) NULL,
     [requisitos]     VARCHAR (40) NULL,
     [certificados]   VARCHAR(50)        NULL,
     [funciones]      VARCHAR (50) NULL,

@@ -21,7 +21,12 @@ namespace UESAN.Jobs.API.Controllers
 		[HttpPost("CreateEmpresa")]
 		public async Task<IActionResult> Insert(EmpresaInsertDTO empresaInsertDTO)
 		{
-			var result = await _empresaServices.Insert(empresaInsertDTO);
+			if (empresaInsertDTO == null)			
+				return BadRequest("Datos no válidos");
+			if(empresaInsertDTO.Ruc.Length!=11)
+				return BadRequest("El ruc debe tener 11 dígitos");
+
+                var result = await _empresaServices.Insert(empresaInsertDTO);
 			if (!result)
 				return BadRequest(result);
 			return Ok(result);
