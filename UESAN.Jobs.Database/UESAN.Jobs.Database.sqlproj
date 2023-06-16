@@ -73,7 +73,4 @@
     <Build Include="dbo\Tables\CompetenciasOferta.sql" />
     <Build Include="dbo\Tables\Calificaciones.sql" />
   </ItemGroup>
-  <ItemGroup>
-    <RefactorLog Include="UESAN.Jobs.Database.refactorlog" />
-  </ItemGroup>
 </Project>

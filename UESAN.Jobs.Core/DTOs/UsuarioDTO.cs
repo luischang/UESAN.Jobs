@@ -71,10 +71,6 @@ namespace UESAN.Jobs.Core.DTOs
 		public string? Password { get; set; }
 	}
 
-	public class UsuarioDescripcionCorreoDTO
-	{
-		public string? Correo { get; set; }
-	}
 
 
 }

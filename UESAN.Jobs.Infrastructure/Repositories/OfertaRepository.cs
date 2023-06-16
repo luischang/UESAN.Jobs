@@ -73,5 +73,12 @@ namespace UESAN.Jobs.Infrastructure.Repositories
 			int rows =  await _context.SaveChangesAsync();
 			return rows > 0;
 		}
+
+		public async Task<bool> DecrementarPostulantes(Oferta oferta)
+		{
+			oferta.NumeroPostulantes = oferta.NumeroPostulantes - 1;
+			int rows = await _context.SaveChangesAsync();
+			return rows > 0;
+		}
 	}
 }

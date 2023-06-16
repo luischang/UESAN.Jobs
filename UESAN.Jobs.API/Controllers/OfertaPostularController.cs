@@ -55,7 +55,7 @@ namespace UESAN.Jobs.API.Controllers
 			var result = await _ofertaPostularService.Delete(id);
 			if (!result)
 				return NotFound();
-			return Ok(result);
+			return Ok(result + "Se Cancelo la ofertaPostulada relacionada al postulante");
 		}
 
 		[HttpGet("{id}/GetPostulantesByIdOferta")]

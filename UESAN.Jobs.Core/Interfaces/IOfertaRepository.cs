@@ -12,5 +12,6 @@ namespace UESAN.Jobs.Core.Interfaces
 		Task<IEnumerable<Oferta>> GetAllOfertasByEmpresa(int id);
 
 		Task<bool> incrementPostulantes(Oferta o);
+		Task<bool> DecrementarPostulantes(Oferta oferta);
 	}
 }

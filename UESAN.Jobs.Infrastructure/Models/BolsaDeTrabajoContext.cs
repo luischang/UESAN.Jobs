@@ -34,6 +34,10 @@ public partial class BolsaDeTrabajoContext : DbContext
 
     public virtual DbSet<Usuario> Usuario { get; set; }
 
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+        => optionsBuilder.UseSqlServer("Server=LAPTOP-HP1HJ343\\SOY_YO;DataBase=Bolsa_de_trabajo;TrustServerCertificate=True;Integrated Security=true");
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Calificaciones>(entity =>
@@ -55,7 +59,7 @@ public partial class BolsaDeTrabajoContext : DbContext
 
         modelBuilder.Entity<Competencias>(entity =>
         {
-            entity.HasKey(e => e.IdCompetencia).HasName("PK__Competen__DA802ADD8BFC5775");
+            entity.HasKey(e => e.IdCompetencia).HasName("PK__Competen__DA802ADD943DA212");
 
             entity.Property(e => e.Descripcion)
                 .HasMaxLength(30)
@@ -94,7 +98,7 @@ public partial class BolsaDeTrabajoContext : DbContext
 
         modelBuilder.Entity<Empresa>(entity =>
         {
-            entity.HasKey(e => e.IdEmpresa).HasName("PK__Empresa__75D2CED49B4A1CEE");
+            entity.HasKey(e => e.IdEmpresa).HasName("PK__Empresa__75D2CED489919357");
 
             entity.Property(e => e.IdEmpresa).HasColumnName("idEmpresa");
             entity.Property(e => e.Direccion)
@@ -121,7 +125,7 @@ public partial class BolsaDeTrabajoContext : DbContext
 
         modelBuilder.Entity<Oferta>(entity =>
         {
-            entity.HasKey(e => e.IdOferta).HasName("PK__Oferta__05A1245E876AC376");
+            entity.HasKey(e => e.IdOferta).HasName("PK__Oferta__05A1245E463FB706");
 
             entity.Property(e => e.IdOferta).HasColumnName("idOferta");
             entity.Property(e => e.Certificados)
@@ -166,7 +170,7 @@ public partial class BolsaDeTrabajoContext : DbContext
 
         modelBuilder.Entity<OfertaPostular>(entity =>
         {
-            entity.HasKey(e => e.IdOfertaPostular).HasName("PK__OfertaPo__2DB5694C0784DD4A");
+            entity.HasKey(e => e.IdOfertaPostular).HasName("PK__OfertaPo__2DB5694CB05A9089");
 
             entity.Property(e => e.IdOfertaPostular).HasColumnName("idOfertaPostular");
             entity.Property(e => e.Estado).HasColumnName("estado");
@@ -187,7 +191,7 @@ public partial class BolsaDeTrabajoContext : DbContext
 
         modelBuilder.Entity<Postulante>(entity =>
         {
-            entity.HasKey(e => e.IdPostulante).HasName("PK__Postulan__D8831F4D70C009CA");
+            entity.HasKey(e => e.IdPostulante).HasName("PK__Postulan__D8831F4D9BDCD85A");
 
             entity.Property(e => e.Certificados)
                 .HasMaxLength(50)
@@ -221,7 +225,7 @@ public partial class BolsaDeTrabajoContext : DbContext
 
         modelBuilder.Entity<Usuario>(entity =>
         {
-            entity.HasKey(e => e.IdUsuario).HasName("PK__Usuario__645723A6FC4AA173");
+            entity.HasKey(e => e.IdUsuario).HasName("PK__Usuario__645723A610462BFE");
 
             entity.Property(e => e.IdUsuario).HasColumnName("idUsuario");
             entity.Property(e => e.Correo)

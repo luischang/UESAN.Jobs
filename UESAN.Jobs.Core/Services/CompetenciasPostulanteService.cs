@@ -28,8 +28,9 @@ namespace UESAN.Jobs.Core.Services
 				Postulante = new PostulanteDescDTO
 				{
 					Nombre = e.IdPostulanteNavigation.Nombre,
-					Usuario = new UsuarioDescripcionCorreoDTO
+					Usuario = new UsuarioDescripcionDTO
 					{
+						IdUsuario = e.IdPostulanteNavigation.IdUsuarioNavigation.IdUsuario,
 						Correo = e.IdPostulanteNavigation.IdUsuarioNavigation.Correo
 					}
 
@@ -54,8 +55,9 @@ namespace UESAN.Jobs.Core.Services
 				Postulante = new PostulanteDescDTO
 				{
 					Nombre = e.IdPostulanteNavigation.Nombre,
-					Usuario = new UsuarioDescripcionCorreoDTO
+					Usuario = new UsuarioDescripcionDTO
 					{
+						IdUsuario = e.IdPostulanteNavigation.IdUsuarioNavigation.IdUsuario,
 						Correo = e.IdPostulanteNavigation.IdUsuarioNavigation.Correo
 					}
 

@@ -37,10 +37,10 @@ namespace UESAN.Jobs.Core.Services
 					Descripcion = e.IdOfertaNavigation.Descripcion
 					
 				},
-				Postulante = new PostulanteDescDTO
+				Postulante = new PostulanteDescripcionDTO
 				{
-					Nombre = e.IdPostulanteNavigation.Nombre
-					
+					IdPostulante = (int)e.IdPostulante,
+					Nombre = e.IdPostulanteNavigation.Nombre,
 				}
 				
 			});
@@ -63,9 +63,11 @@ namespace UESAN.Jobs.Core.Services
 					IdOferta = ofertaP.IdOfertaNavigation.IdOferta,
 					Descripcion = ofertaP.IdOfertaNavigation.Descripcion
 				},
-				Postulante = new PostulanteDescDTO
+				Postulante = new PostulanteDescripcionDTO
 				{
-					Nombre = ofertaP.IdPostulanteNavigation.Nombre
+					IdPostulante = (int)ofertaP.IdPostulante,
+					Nombre = ofertaP.IdPostulanteNavigation.Nombre,
+					
 				}
 
 			};
@@ -79,15 +81,12 @@ namespace UESAN.Jobs.Core.Services
 			{
 				var oppDTO = ofertasP.Select(x => new OfertaPostularPostulanteDTO
 				{
+					
 					IdOfertaPostular = x.IdOfertaPostular,
 					PostulanteDescripcion = new PostulanteDescripcionDTO
 					{
 						IdPostulante = x.IdPostulanteNavigation.IdPostulante,
 						Nombre = x.IdPostulanteNavigation.Nombre,
-						Usuario = new UsuarioDescripcionCorreoDTO
-						{
-							Correo = x.IdPostulanteNavigation.IdUsuarioNavigation.Correo
-						}
 					}
 				});
 				return oppDTO;
@@ -113,19 +112,14 @@ namespace UESAN.Jobs.Core.Services
 						Descripcion = e.IdOfertaNavigation.Descripcion
 						
 					},
-					Postulante = new PostulanteDescDTO
+					Postulante = new PostulanteDescripcionDTO
 					{
-						
 						Nombre = e.IdPostulanteNavigation.Nombre,
 						
-						Usuario = new UsuarioDescripcionCorreoDTO
-						{
-							Correo = e.IdPostulanteNavigation.IdUsuarioNavigation.Correo
-							
-						}
+				
 					}
 
-				});
+				});;
 				return ofertaDTO;
 			}
 			return null;
@@ -147,8 +141,18 @@ namespace UESAN.Jobs.Core.Services
 
 		public async Task<bool> Delete(int id)
 		{
-			var idUsuario = await _ofertaPostularRepository.GetById(id);
-			return await _ofertaPostularRepository.delete(id);
+			var ofertaPostular = await _ofertaPostularRepository.GetById(id);
+			//Traigo la oferta:
+			var oferta = await _ofertaRepository.GetById((int)ofertaPostular.IdOferta);
+			//Disminuyo el numero de postulantes:
+			if(ofertaPostular != null && oferta != null)
+			{
+				var disminucion = await _ofertaRepository.DecrementarPostulantes(oferta);
+
+				return await _ofertaPostularRepository.delete(id) && disminucion;
+			}
+			return false;
+
 		}
 
 		public async Task<bool> Insert(OfertaPostularInsertDTO ofertaPostularInsertDTO)
@@ -172,7 +176,6 @@ namespace UESAN.Jobs.Core.Services
 					}
 				}
 			}
-            
 			//si el postulante no esta registrado en esta oferta, se procede a crear la oferta postular
             if (ofertaE != null && postulanteE != null && apto)
 			{

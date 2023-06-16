@@ -25,7 +25,7 @@ namespace UESAN.Jobs.Core.DTOs
 
 		public OfertaDescDTO Oferta { get; set; }
 
-		public PostulanteDescDTO Postulante { get; set; }
+		public PostulanteDescripcionDTO Postulante { get; set; }
 
 		public DateTime? Fecha { get; set; }
 

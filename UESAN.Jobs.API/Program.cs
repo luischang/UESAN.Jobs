@@ -26,8 +26,6 @@ builder.Services.AddTransient<IPostulanteRepository, PostulanteRepository>();
 builder.Services.AddTransient<IPostulanteService, PostulanteService>();
 builder.Services.AddTransient<IOfertaRepository, OfertaRepository>();
 builder.Services.AddTransient<IOfertaService, OfertaService>();
-builder.Services.AddTransient<IOfertaPostularRepository,OfertaPostularRepository>();
-builder.Services.AddTransient<IOfertaPostularService, OfertaPostularService>();
 builder.Services.AddTransient<ICompetenciasRepository, CompetenciasRepository>();
 builder.Services.AddTransient<ICompetenciasService, CompetenciasService>();
 builder.Services.AddTransient<ICompetenciasOfertaRepository,CompetenciasOfertaRepository>();
@@ -36,6 +34,8 @@ builder.Services.AddTransient<ICompetenciasPostulanteRepository, CompetenciasPos
 builder.Services.AddTransient<ICompetenciasPostulanteService,  CompetenciasPostulanteService>();
 builder.Services.AddTransient<ICalificacionRespository, CalificacionRespository>();
 builder.Services.AddTransient<ICalificacionesServices, CalificacionesServices>();
+builder.Services.AddTransient<IOfertaPostularRepository, OfertaPostularRepository>();
+builder.Services.AddTransient<IOfertaPostularService, OfertaPostularService>();
 
 builder.Services.AddControllers();
 
