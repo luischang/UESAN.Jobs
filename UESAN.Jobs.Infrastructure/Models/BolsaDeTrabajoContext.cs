@@ -68,30 +68,34 @@ public partial class BolsaDeTrabajoContext : DbContext
 
         modelBuilder.Entity<CompetenciasOferta>(entity =>
         {
-            entity.HasNoKey();
+            entity.HasKey(e => e.IdOferta);
 
-            entity.HasOne(d => d.IdCompetenciaNavigation).WithMany()
+            entity.Property(e => e.IdOferta).ValueGeneratedNever();
+
+            entity.HasOne(d => d.IdCompetenciaNavigation).WithMany(p => p.CompetenciasOferta)
                 .HasForeignKey(d => d.IdCompetencia)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__Competenc__IdCom__32E0915F");
 
-            entity.HasOne(d => d.IdOfertaNavigation).WithMany()
-                .HasForeignKey(d => d.IdOferta)
+            entity.HasOne(d => d.IdOfertaNavigation).WithOne(p => p.CompetenciasOferta)
+                .HasForeignKey<CompetenciasOferta>(d => d.IdOferta)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__Competenc__IdOfe__33D4B598");
         });
 
         modelBuilder.Entity<CompetenciasPostulante>(entity =>
         {
-            entity.HasNoKey();
+            entity.HasKey(e => e.IdPostulante);
 
-            entity.HasOne(d => d.IdCompetenciaNavigation).WithMany()
+            entity.Property(e => e.IdPostulante).ValueGeneratedNever();
+
+            entity.HasOne(d => d.IdCompetenciaNavigation).WithMany(p => p.CompetenciasPostulante)
                 .HasForeignKey(d => d.IdCompetencia)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__Competenc__IdCom__34C8D9D1");
 
-            entity.HasOne(d => d.IdPostulanteNavigation).WithMany()
-                .HasForeignKey(d => d.IdPostulante)
+            entity.HasOne(d => d.IdPostulanteNavigation).WithOne(p => p.CompetenciasPostulante)
+                .HasForeignKey<CompetenciasPostulante>(d => d.IdPostulante)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__Competenc__IdPos__35BCFE0A");
         });

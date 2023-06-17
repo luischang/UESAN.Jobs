@@ -11,7 +11,7 @@ public partial class CompetenciasPostulante
 
 	public bool? Estado { get; set; }
 
-	public virtual Competencias IdCompetenciaNavigation { get; set; } = null!;
+	public virtual Competencias IdCompetenciaNavigation { get; set; }
 
-	public virtual Postulante IdPostulanteNavigation { get; set; } = null!;
+	public virtual Postulante IdPostulanteNavigation { get; set; }
 }
