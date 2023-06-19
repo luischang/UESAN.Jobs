@@ -114,6 +114,7 @@ namespace UESAN.Jobs.Core.Services
 					},
 					Postulante = new PostulanteDescripcionDTO
 					{
+						IdPostulante = (int)e.IdPostulante,
 						Nombre = e.IdPostulanteNavigation.Nombre,
 						
 				

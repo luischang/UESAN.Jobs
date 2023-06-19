@@ -5,6 +5,8 @@ namespace UESAN.Jobs.Core.Entities;
 
 public partial class Calificaciones
 {
+	public int IdCalificacion { get; set; }
+
 	public int IdEmpresa { get; set; }
 
 	public int IdPostulante { get; set; }

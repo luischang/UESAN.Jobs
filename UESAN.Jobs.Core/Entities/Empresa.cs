@@ -17,6 +17,8 @@ public partial class Empresa
 
 	public string? Telefono { get; set; }
 
+	public virtual ICollection<Calificaciones> Calificaciones { get; set; } = new List<Calificaciones>();
+
 	public virtual Usuario? IdUsuarioNavigation { get; set; }
 
 	public virtual ICollection<Oferta> Oferta { get; set; } = new List<Oferta>();

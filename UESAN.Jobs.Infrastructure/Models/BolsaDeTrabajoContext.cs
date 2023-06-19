@@ -42,24 +42,25 @@ public partial class BolsaDeTrabajoContext : DbContext
     {
         modelBuilder.Entity<Calificaciones>(entity =>
         {
-            entity.HasNoKey();
+            entity.HasKey(e => e.IdCalificacion).HasName("PK__Califica__E056358FC75CD105");
 
+            entity.Property(e => e.IdCalificacion).HasColumnName("idCalificacion");
             entity.Property(e => e.IdEmpresa).HasColumnName("idEmpresa");
 
-            entity.HasOne(d => d.IdEmpresaNavigation).WithMany()
+            entity.HasOne(d => d.IdEmpresaNavigation).WithMany(p => p.Calificaciones)
                 .HasForeignKey(d => d.IdEmpresa)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Calificac__idEmp__30F848ED");
+                .HasConstraintName("FK__Calificac__idEmp__33D4B598");
 
-            entity.HasOne(d => d.IdPostulanteNavigation).WithMany()
+            entity.HasOne(d => d.IdPostulanteNavigation).WithMany(p => p.Calificaciones)
                 .HasForeignKey(d => d.IdPostulante)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Calificac__IdPos__31EC6D26");
+                .HasConstraintName("FK__Calificac__IdPos__34C8D9D1");
         });
 
         modelBuilder.Entity<Competencias>(entity =>
         {
-            entity.HasKey(e => e.IdCompetencia).HasName("PK__Competen__DA802ADD943DA212");
+            entity.HasKey(e => e.IdCompetencia).HasName("PK__Competen__DA802ADD4A154480");
 
             entity.Property(e => e.Descripcion)
                 .HasMaxLength(30)
@@ -68,41 +69,37 @@ public partial class BolsaDeTrabajoContext : DbContext
 
         modelBuilder.Entity<CompetenciasOferta>(entity =>
         {
-            entity.HasKey(e => e.IdOferta);
-
-            entity.Property(e => e.IdOferta).ValueGeneratedNever();
+            entity.HasKey(e => e.IdCompetenciaOferta).HasName("PK__Competen__65E5E338284A97F8");
 
             entity.HasOne(d => d.IdCompetenciaNavigation).WithMany(p => p.CompetenciasOferta)
                 .HasForeignKey(d => d.IdCompetencia)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Competenc__IdCom__32E0915F");
+                .HasConstraintName("FK__Competenc__IdCom__35BCFE0A");
 
-            entity.HasOne(d => d.IdOfertaNavigation).WithOne(p => p.CompetenciasOferta)
-                .HasForeignKey<CompetenciasOferta>(d => d.IdOferta)
+            entity.HasOne(d => d.IdOfertaNavigation).WithMany(p => p.CompetenciasOferta)
+                .HasForeignKey(d => d.IdOferta)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Competenc__IdOfe__33D4B598");
+                .HasConstraintName("FK__Competenc__IdOfe__36B12243");
         });
 
         modelBuilder.Entity<CompetenciasPostulante>(entity =>
         {
-            entity.HasKey(e => e.IdPostulante);
-
-            entity.Property(e => e.IdPostulante).ValueGeneratedNever();
+            entity.HasKey(e => e.IdCompetenciaPostulante).HasName("PK__Competen__5BBD3E385DD888F7");
 
             entity.HasOne(d => d.IdCompetenciaNavigation).WithMany(p => p.CompetenciasPostulante)
                 .HasForeignKey(d => d.IdCompetencia)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Competenc__IdCom__34C8D9D1");
+                .HasConstraintName("FK__Competenc__IdCom__37A5467C");
 
-            entity.HasOne(d => d.IdPostulanteNavigation).WithOne(p => p.CompetenciasPostulante)
-                .HasForeignKey<CompetenciasPostulante>(d => d.IdPostulante)
+            entity.HasOne(d => d.IdPostulanteNavigation).WithMany(p => p.CompetenciasPostulante)
+                .HasForeignKey(d => d.IdPostulante)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Competenc__IdPos__35BCFE0A");
+                .HasConstraintName("FK__Competenc__IdPos__38996AB5");
         });
 
         modelBuilder.Entity<Empresa>(entity =>
         {
-            entity.HasKey(e => e.IdEmpresa).HasName("PK__Empresa__75D2CED489919357");
+            entity.HasKey(e => e.IdEmpresa).HasName("PK__Empresa__75D2CED4BE8FBEF3");
 
             entity.Property(e => e.IdEmpresa).HasColumnName("idEmpresa");
             entity.Property(e => e.Direccion)
@@ -124,12 +121,12 @@ public partial class BolsaDeTrabajoContext : DbContext
 
             entity.HasOne(d => d.IdUsuarioNavigation).WithMany(p => p.Empresa)
                 .HasForeignKey(d => d.IdUsuario)
-                .HasConstraintName("FK__Empresa__idUsuar__36B12243");
+                .HasConstraintName("FK__Empresa__idUsuar__398D8EEE");
         });
 
         modelBuilder.Entity<Oferta>(entity =>
         {
-            entity.HasKey(e => e.IdOferta).HasName("PK__Oferta__05A1245E463FB706");
+            entity.HasKey(e => e.IdOferta).HasName("PK__Oferta__05A1245EB4255D90");
 
             entity.Property(e => e.IdOferta).HasColumnName("idOferta");
             entity.Property(e => e.Certificados)
@@ -169,12 +166,12 @@ public partial class BolsaDeTrabajoContext : DbContext
 
             entity.HasOne(d => d.IdEmpresaNavigation).WithMany(p => p.Oferta)
                 .HasForeignKey(d => d.IdEmpresa)
-                .HasConstraintName("FK__Oferta__idEmpres__37A5467C");
+                .HasConstraintName("FK__Oferta__idEmpres__3A81B327");
         });
 
         modelBuilder.Entity<OfertaPostular>(entity =>
         {
-            entity.HasKey(e => e.IdOfertaPostular).HasName("PK__OfertaPo__2DB5694CB05A9089");
+            entity.HasKey(e => e.IdOfertaPostular).HasName("PK__OfertaPo__2DB5694C2C5ABC94");
 
             entity.Property(e => e.IdOfertaPostular).HasColumnName("idOfertaPostular");
             entity.Property(e => e.Estado).HasColumnName("estado");
@@ -195,7 +192,7 @@ public partial class BolsaDeTrabajoContext : DbContext
 
         modelBuilder.Entity<Postulante>(entity =>
         {
-            entity.HasKey(e => e.IdPostulante).HasName("PK__Postulan__D8831F4D9BDCD85A");
+            entity.HasKey(e => e.IdPostulante).HasName("PK__Postulan__D8831F4D6EB73B5E");
 
             entity.Property(e => e.Certificados)
                 .HasMaxLength(50)
@@ -224,12 +221,12 @@ public partial class BolsaDeTrabajoContext : DbContext
 
             entity.HasOne(d => d.IdUsuarioNavigation).WithMany(p => p.Postulante)
                 .HasForeignKey(d => d.IdUsuario)
-                .HasConstraintName("FK__Postulant__idUsu__3A81B327");
+                .HasConstraintName("FK__Postulant__idUsu__3D5E1FD2");
         });
 
         modelBuilder.Entity<Usuario>(entity =>
         {
-            entity.HasKey(e => e.IdUsuario).HasName("PK__Usuario__645723A610462BFE");
+            entity.HasKey(e => e.IdUsuario).HasName("PK__Usuario__645723A6C7EDC659");
 
             entity.Property(e => e.IdUsuario).HasColumnName("idUsuario");
             entity.Property(e => e.Correo)

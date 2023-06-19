@@ -6,7 +6,7 @@ namespace UESAN.Jobs.Core.Interfaces
 	{
 		Task<IEnumerable<Postulante>> GetAll();
 		Task<Postulante> GetById(int id);
-		Task<bool> Insert(Postulante postulante);
+		Task<int> Insert(Postulante postulante);
 		Task<bool> update(Postulante postulante);
 
 		Task<int> GetIdUsuario(int id);

@@ -25,6 +25,7 @@ namespace UESAN.Jobs.Infrastructure.Repositories
 				.Where(x => x.Estado == true)
 				.Include(y => y.IdCompetenciaNavigation)
 				.Include(z => z.IdOfertaNavigation)
+				.Include(s=> s.IdOfertaNavigation.IdEmpresaNavigation)
 				.ToListAsync();
 		}
 
@@ -33,6 +34,7 @@ namespace UESAN.Jobs.Infrastructure.Repositories
 			return await _context.CompetenciasOferta
 				.Where(x => x.IdOferta == id && x.Estado == true)
 				.Include(y => y.IdCompetenciaNavigation)
+				.Include(s => s.IdOfertaNavigation.IdEmpresaNavigation)
 				.Include(z => z.IdOfertaNavigation)
 				.ToListAsync();
 		}

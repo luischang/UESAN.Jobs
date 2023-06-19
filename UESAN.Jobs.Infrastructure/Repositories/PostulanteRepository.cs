@@ -35,11 +35,17 @@ namespace UESAN.Jobs.Infrastructure.Repositories
 				.FirstOrDefaultAsync();
 		}
 
-		public async Task<bool> Insert(Postulante postulante)
+		public async Task<int> Insert(Postulante postulante)
 		{
 			await _context.Postulante.AddAsync(postulante);
 			int rows = await _context.SaveChangesAsync();
-			return rows > 0;
+			if (rows > 0) {
+				return postulante.IdPostulante;
+			}
+			else
+			{
+				return 0;
+			}
 		}
 
 		public async Task<bool> update(Postulante postulante)

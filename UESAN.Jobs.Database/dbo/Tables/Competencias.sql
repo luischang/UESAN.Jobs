@@ -4,3 +4,5 @@
     [Descripcion] NCHAR(30) NULL, 
     [Estado] BIT NULL
 )
+
+

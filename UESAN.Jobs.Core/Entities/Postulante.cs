@@ -21,7 +21,9 @@ public partial class Postulante
 
 	public string? Certificados { get; set; }
 
-	public virtual CompetenciasPostulante? CompetenciasPostulante { get; set; }
+	public virtual ICollection<Calificaciones> Calificaciones { get; set; } = new List<Calificaciones>();
+
+	public virtual ICollection<CompetenciasPostulante> CompetenciasPostulante { get; set; } = new List<CompetenciasPostulante>();
 
 	public virtual Usuario? IdUsuarioNavigation { get; set; }
 

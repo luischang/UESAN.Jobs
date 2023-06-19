@@ -74,7 +74,7 @@ namespace UESAN.Jobs.Core.Services
 			return postulanteDTO;
 		}
 
-		public async Task<bool> Insert(PostulanteInsertDTO postulanteInsertDTO)
+		public async Task<int> Insert(PostulanteInsertDTO postulanteInsertDTO)
 		{
 			var usuarioI = new UsuarioAuthRequestDTO()
 			{
@@ -104,7 +104,7 @@ namespace UESAN.Jobs.Core.Services
 				return await _postulanteRepository.Insert(postulante);
 
 			}
-			return false;
+			return 0;
 		}
 
 		public async Task<bool> Update(PostulanteUpdateDTO postulanteUpdateDTO)

@@ -10,11 +10,9 @@ namespace UESAN.Jobs.Core.DTOs
 	{
 		public int IdCompetencia { get; set; }
 
-		public int IdPostulante { get; set; }
-
 		public CompetenciasDescripcionDTO Competencias { get; set; }
 
-		public PostulanteDescDTO Postulante { get; set; }
+		public PostulanteDescripcionDTO Postulante { get; set; }
 	}
 
 	public class CompetenciasPostulanteInsertDTO 

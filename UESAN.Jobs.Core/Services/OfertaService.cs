@@ -108,7 +108,7 @@ namespace UESAN.Jobs.Core.Services
 			return await _ofertaRepository.delete(id);
 		}
 
-		public async Task<bool> Insert(OfertaInsert ofertaInsert)
+		public async Task<int> Insert(OfertaInsert ofertaInsert)
 		{
 			var empresaId = await _empresaRepository.GetById(ofertaInsert.Empresa.IdEmpresa);
 
@@ -133,7 +133,7 @@ namespace UESAN.Jobs.Core.Services
 				return await _ofertaRepository.Insert(oferta);
 
 			}
-			return false;
+			return 0;
 		}
 
 		public async Task<IEnumerable<OfertaDTO>> GetAllOfertasByEmpresa(int idempresa)

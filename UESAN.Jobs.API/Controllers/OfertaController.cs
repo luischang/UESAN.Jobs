@@ -21,8 +21,8 @@ namespace UESAN.Jobs.API.Controllers
 		public async Task<IActionResult> Insert(OfertaInsert ofertaInsert)
 		{
 			var result = await _ofertaService.Insert(ofertaInsert);
-			if (!result)
-				return BadRequest(result);
+			if (result == 0)
+				return BadRequest(false);
 			return Ok(result);
 		}
 

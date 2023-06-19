@@ -21,6 +21,7 @@ namespace UESAN.Jobs.Core.Services
 		public async Task<IEnumerable<CompetenciasOfertaDTO>> GetAll()
 		{
 			var compeOferts = await _competenciasOfertaRepository.GetAll();
+
 			var competenciasOfertaDTO = compeOferts.Select(e => new CompetenciasOfertaDTO
 			{
 				IdCompetencia = e.IdCompetencia,

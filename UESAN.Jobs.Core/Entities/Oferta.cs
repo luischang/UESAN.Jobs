@@ -29,7 +29,7 @@ public partial class Oferta
 
 	public int? NumeroPostulantes { get; set; }
 
-	public virtual CompetenciasOferta? CompetenciasOferta { get; set; }
+	public virtual ICollection<CompetenciasOferta> CompetenciasOferta { get; set; } = new List<CompetenciasOferta>();
 
 	public virtual Empresa? IdEmpresaNavigation { get; set; }
 

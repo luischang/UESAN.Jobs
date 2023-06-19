@@ -30,11 +30,18 @@ namespace UESAN.Jobs.Infrastructure.Repositories
 			return await _context.Oferta.Where(x => x.IdOferta == id).Include(y => y.IdEmpresaNavigation).FirstOrDefaultAsync();
 		}
 
-		public async Task<bool> Insert(Oferta oferta)
+		public async Task<int> Insert(Oferta oferta)
 		{
 			await _context.Oferta.AddAsync(oferta);
 			int rows = await _context.SaveChangesAsync();
-			return rows > 0;
+			if( rows > 0)
+			{
+				return oferta.IdOferta;
+			}
+			else
+			{
+				return 0;
+			}
 		}
 
 		public async Task<bool> Update(Oferta oferta)

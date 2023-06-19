@@ -21,8 +21,8 @@ namespace UESAN.Jobs.API.Controllers
 		public async Task<IActionResult> Insert(PostulanteInsertDTO postulanteInsertDTO)
 		{
 			var result = await _postulanteService.Insert(postulanteInsertDTO);
-			if (!result)
-				return BadRequest(result);
+			if (result == 0)
+				return BadRequest(false);
 			return Ok(result);
 		}
 

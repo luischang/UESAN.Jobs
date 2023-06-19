@@ -24,16 +24,10 @@ namespace UESAN.Jobs.Core.Services
 			var competenciasPostulanteDTO = compePos.Select(e => new CompetenciasPostulanteDTO
 			{
 				IdCompetencia = e.IdCompetencia,
-				IdPostulante = e.IdPostulante,
-				Postulante = new PostulanteDescDTO
+				Postulante = new PostulanteDescripcionDTO
 				{
+					IdPostulante = e.IdPostulante,
 					Nombre = e.IdPostulanteNavigation.Nombre,
-					Usuario = new UsuarioDescripcionDTO
-					{
-						IdUsuario = e.IdPostulanteNavigation.IdUsuarioNavigation.IdUsuario,
-						Correo = e.IdPostulanteNavigation.IdUsuarioNavigation.Correo
-					}
-
 				},
 				Competencias = new CompetenciasDescripcionDTO
 				{
@@ -51,16 +45,10 @@ namespace UESAN.Jobs.Core.Services
 			var competenciasPostulanteDTO = compPos.Select(e => new CompetenciasPostulanteDTO
 			{
 				IdCompetencia = e.IdCompetencia,
-				IdPostulante = e.IdPostulante,
-				Postulante = new PostulanteDescDTO
+				Postulante = new PostulanteDescripcionDTO
 				{
+					IdPostulante = e.IdPostulante,
 					Nombre = e.IdPostulanteNavigation.Nombre,
-					Usuario = new UsuarioDescripcionDTO
-					{
-						IdUsuario = e.IdPostulanteNavigation.IdUsuarioNavigation.IdUsuario,
-						Correo = e.IdPostulanteNavigation.IdUsuarioNavigation.Correo
-					}
-
 				},
 				Competencias = new CompetenciasDescripcionDTO
 				{
