@@ -66,7 +66,7 @@ namespace UESAN.Jobs.Infrastructure.Repositories
 
 		public async Task<IEnumerable<Oferta>> GetAllOfertasByEmpresa(int id) //ofertas hechas por una empresa
 		{
-			var ofertas = await _context.Oferta.Where(x=> x.IdEmpresa == id).ToListAsync();
+			var ofertas = await _context.Oferta.Where(x=> x.IdEmpresa == id && x.Estado == true).ToListAsync();
 			if(ofertas.Any()) 
 			{
 				return ofertas;

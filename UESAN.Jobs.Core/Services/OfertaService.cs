@@ -153,7 +153,9 @@ namespace UESAN.Jobs.Core.Services
 					Modalidad = e.Modalidad,
 					Puesto = e.Puesto,
 					Requisitos = e.Requisitos,
-					Ubicacion = e.Ubicacion
+					Ubicacion = e.Ubicacion,
+					NumeroPostulantes = e.NumeroPostulantes,
+					
 
 				});
 				return ofertaDTO;
