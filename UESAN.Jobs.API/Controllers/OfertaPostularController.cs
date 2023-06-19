@@ -55,7 +55,7 @@ namespace UESAN.Jobs.API.Controllers
 			var result = await _ofertaPostularService.Delete(id);
 			if (!result)
 				return NotFound();
-			return Ok(result + "Se Cancelo la ofertaPostulada relacionada al postulante");
+			return Ok(result);
 		}
 
 		[HttpGet("{id}/GetPostulantesByIdOferta")]
@@ -63,7 +63,7 @@ namespace UESAN.Jobs.API.Controllers
 		{
 			var result = await _ofertaPostularService.GetAllPostulanteByIdOferta(id);
 			if (result == null)
-				return NotFound("No hay postulantes para esta oferta");
+				return NotFound("**** No hay postulantes para esta oferta *****");
 			return Ok(result);
 		}
 
@@ -72,7 +72,7 @@ namespace UESAN.Jobs.API.Controllers
 		{
 			var result = await _ofertaPostularService.GetAllOfertasByIdPostulante(id);
 			if (result == null)
-				return NotFound("Esta persona aun no postula ");
+				return NotFound("***** Esta persona aun no postula a una oferta *****");
 			return Ok(result);
 		}
 

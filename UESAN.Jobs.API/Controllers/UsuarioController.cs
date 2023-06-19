@@ -42,7 +42,7 @@ namespace UESAN.Jobs.API.Controllers
 			if (!result) { 
 				return BadRequest("No se ha creado el admin");
 			}
-			else { return Ok(result + " _ nuevo admin creado "); }
+			else { return Ok(result + " _ nuevo admin creado  _ "); }
 		}
 
 

@@ -74,7 +74,20 @@ namespace UESAN.Jobs.Core.Services
 
 		public async Task<bool> Insert(CompetenciasOfertasInsertDTO competenciasOfertasInsertDTO)
 		{
-			if (competenciasOfertasInsertDTO != null)
+			//validacion para que una empresa no tenga competencias repetidas:
+			var competencias = await _competenciasOfertaRepository.GetAllByIdOferta(competenciasOfertasInsertDTO.IdOferta);
+			bool estado = true;
+			if (competencias.Count() > 0)
+			{
+                foreach (var item in competencias)
+                {
+					if (competenciasOfertasInsertDTO.IdCompetencia == item.IdCompetencia)
+					{
+						estado = false; break;
+					}
+                }
+            }
+			if (competenciasOfertasInsertDTO != null && estado)
 			{
 				var com = new CompetenciasOferta
 				{

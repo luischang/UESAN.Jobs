@@ -65,7 +65,7 @@ namespace UESAN.Jobs.API.Controllers
 		{
 			var result = await _ofertaService.GetAllOfertasByEmpresa(id);
 			if (result == null)
-				return NotFound("No hay ofertas creadas por la empresa");
+				return NotFound("****No hay ofertas creadas por la empresa****");
 			return Ok(result);
 		}
 
