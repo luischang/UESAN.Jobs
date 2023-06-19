@@ -60,7 +60,19 @@ namespace UESAN.Jobs.Core.Services
 
 		public async Task<bool> Insert(CalificacionesInsertDTO calificacionesInsertDTO)
 		{
-			if (calificacionesInsertDTO != null)
+
+			//Validare que un postulante no pueda calificar a una empresa dos veces.
+			var calificaciones = await _calificaciones.GetAllByIdEmpresa(calificacionesInsertDTO.IdEmpresa);
+			bool estado = true;
+            foreach (var item in calificaciones)
+            {
+                if(calificacionesInsertDTO.IdPostulante ==  item.IdPostulante)
+				{
+					estado = false;
+				}
+            }
+
+            if (calificacionesInsertDTO != null && estado)
 			{
 				var calificacion = new Calificaciones
 				{
