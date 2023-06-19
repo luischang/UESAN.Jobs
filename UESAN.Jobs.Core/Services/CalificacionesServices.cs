@@ -64,13 +64,17 @@ namespace UESAN.Jobs.Core.Services
 			//Validare que un postulante no pueda calificar a una empresa dos veces.
 			var calificaciones = await _calificaciones.GetAllByIdEmpresa(calificacionesInsertDTO.IdEmpresa);
 			bool estado = true;
-            foreach (var item in calificaciones)
-            {
-                if(calificacionesInsertDTO.IdPostulante ==  item.IdPostulante)
+			if (calificaciones.Count() > 0)
+			{
+				foreach (var item in calificaciones)
 				{
-					estado = false;
+					if (calificacionesInsertDTO.IdPostulante == item.IdPostulante)
+					{
+						estado = false;
+					}
 				}
-            }
+			}
+			
 
             if (calificacionesInsertDTO != null && estado)
 			{
