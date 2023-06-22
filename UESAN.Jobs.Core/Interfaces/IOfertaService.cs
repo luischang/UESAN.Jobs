@@ -11,5 +11,8 @@ namespace UESAN.Jobs.Core.Interfaces
         Task<int> Insert(OfertaInsert ofertaInsert);
         Task<IEnumerable<OfertaDTO>> GetAllOfertasByEmpresa(int idempresa);
 
+        Task<IEnumerable<OfertaDTO>> GetOfertaByUbicacionModalidad(string ubicacion);
+        Task<IEnumerable<OfertaDTO>> GetOfertaByNombEmpresa(string nombre);
+
 	}
 }
