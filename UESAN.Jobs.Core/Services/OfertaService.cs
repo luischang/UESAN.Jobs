@@ -162,5 +162,59 @@ namespace UESAN.Jobs.Core.Services
 			}
 			return null;
 		}
+
+		public async Task<IEnumerable<OfertaDTO>> GetOfertaByUbicacionModalidad(string ubicacion)
+		{
+			var ofertas = await _ofertaRepository.GetOfertasByUbicacionModalidad(ubicacion);
+			if (ofertas.Count() > 0)
+			{
+				var ofertaDTO = ofertas.Select(e => new OfertaDTO
+				{
+					IdOferta = e.IdOferta,
+					IdEmpresa = e.IdEmpresa,
+					Certificados = e.Certificados,
+					Descripcion = e.Descripcion,
+					Estado = e.Estado,
+					FechaCreacion = e.FechaCreacion,
+					Funciones = e.Funciones,
+					Modalidad = e.Modalidad,
+					Puesto = e.Puesto,
+					Requisitos = e.Requisitos,
+					Ubicacion = e.Ubicacion,
+					NumeroPostulantes = e.NumeroPostulantes,
+
+
+				});
+				return ofertaDTO;
+			}
+			return null;
+		}
+
+		public async Task<IEnumerable<OfertaDTO>> GetOfertaByNombEmpresa(string nombre)
+		{
+			var ofertas = await _ofertaRepository.getOfertaByNombEmpresa(nombre);
+			if (ofertas.Count() > 0)
+			{
+				var ofertaDTO = ofertas.Select(e => new OfertaDTO
+				{
+					IdOferta = e.IdOferta,
+					IdEmpresa = e.IdEmpresa,
+					Certificados = e.Certificados,
+					Descripcion = e.Descripcion,
+					Estado = e.Estado,
+					FechaCreacion = e.FechaCreacion,
+					Funciones = e.Funciones,
+					Modalidad = e.Modalidad,
+					Puesto = e.Puesto,
+					Requisitos = e.Requisitos,
+					Ubicacion = e.Ubicacion,
+					NumeroPostulantes = e.NumeroPostulantes,
+
+
+				});
+				return ofertaDTO;
+			}
+			return null;
+		}
 	}
 }

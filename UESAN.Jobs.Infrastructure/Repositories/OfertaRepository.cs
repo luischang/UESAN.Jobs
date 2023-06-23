@@ -74,6 +74,30 @@ namespace UESAN.Jobs.Infrastructure.Repositories
 			return null;
 		}
 
+		//Traer ofertas por Ubicacion y modalidad:
+		public async Task<IEnumerable<Oferta>> GetOfertasByUbicacionModalidad(string ubicacion)
+		{
+			var oferta = await _context.Oferta
+				.Where(x => x.Ubicacion == ubicacion && x.Estado == true)
+				.ToListAsync();
+			if (oferta.Count() == 0)
+			{
+				oferta = await _context.Oferta
+				.Where(x => x.Modalidad == "virtual" && x.Estado == true)
+				.ToListAsync();
+			}
+			return oferta;
+		}
+		//Traer oferta por el nombre de la empresa
+		public async Task<IEnumerable<Oferta>> getOfertaByNombEmpresa(string nombre)
+		{
+			var ofertas = await _context.Oferta
+				.Where(x => x.Estado == true && x.IdEmpresaNavigation.Nombre == nombre)
+				.Include(z=>z.IdEmpresaNavigation)
+				.ToListAsync();
+			return ofertas;
+		}
+
 		public async Task<bool> incrementPostulantes(Oferta o)
 		{
 			o.NumeroPostulantes = o.NumeroPostulantes + 1;

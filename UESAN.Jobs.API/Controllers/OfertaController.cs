@@ -69,5 +69,25 @@ namespace UESAN.Jobs.API.Controllers
 			return Ok(result);
 		}
 
+		[HttpGet("GetByUbicacion")]
+		public async Task<IActionResult> GetOfertaByUbicacionModaliad(string ubicacion)
+		{
+			var result = await _ofertaService.GetOfertaByUbicacionModalidad(ubicacion);
+			if (result==null)
+				return NotFound(false);
+			return Ok(result);
+		}
+
+		[HttpGet("GetByNombreEmpresa")]
+		public async Task<IActionResult> GetOfertaByNombEmpresa(string nombre)
+		{
+			nombre = nombre.Trim();
+
+			var result = await _ofertaService.GetOfertaByNombEmpresa(nombre);
+			if (result == null)
+				return NotFound(false);
+			return Ok(result);
+		}
+
 	}
 }
