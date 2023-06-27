@@ -132,7 +132,7 @@ namespace UESAN.Jobs.Core.Services
 		public async Task<bool> Delete(int id)
 		{
 			var idUsuario = await _empresaRepository.GetIdUsuario(id);
-			 return await _empresaRepository.delete(id) && await _usuarioRepository.delete(idUsuario);
+			return await _empresaRepository.delete(id);
 		}
 
 

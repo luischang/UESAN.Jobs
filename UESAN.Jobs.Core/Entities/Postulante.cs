@@ -17,10 +17,6 @@ public partial class Postulante
 
 	public string? Telefono { get; set; }
 
-	public string? Cv { get; set; }
-
-	public string? Certificados { get; set; }
-
 	public virtual ICollection<Archivos> Archivos { get; set; } = new List<Archivos>();
 
 	public virtual ICollection<Calificaciones> Calificaciones { get; set; } = new List<Calificaciones>();

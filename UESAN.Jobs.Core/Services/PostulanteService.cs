@@ -34,8 +34,6 @@ namespace UESAN.Jobs.Core.Services
 			{
 				IdPostulante = e.IdPostulante,
 				Nombre = e.Nombre,
-				Certificados = e.Certificados,
-				Cv = e.Cv,
 				Direccion = e.Direccion,
 				Dni = e.Dni,
 				Telefono = e.Telefono,
@@ -59,8 +57,6 @@ namespace UESAN.Jobs.Core.Services
 			{
 				IdPostulante = postulante.IdPostulante,
 				Nombre = postulante.Nombre,
-				Certificados = postulante.Certificados,
-				Cv = postulante.Cv,
 				Direccion = postulante.Direccion,
 				Telefono = postulante.Telefono,
 				Dni = postulante.Dni,
@@ -95,10 +91,8 @@ namespace UESAN.Jobs.Core.Services
 				{
 					IdUsuario = usuario.IdUsuario,
 					Nombre = postulanteInsertDTO?.Nombre,
-					Cv = postulanteInsertDTO.Cv,
 					Direccion = postulanteInsertDTO.Direccion,
 					Telefono = postulanteInsertDTO.Telefono,
-					Certificados = postulanteInsertDTO.Certificados,
 					Dni = postulanteInsertDTO.Dni,
 				};
 				return await _postulanteRepository.Insert(postulante);
@@ -117,8 +111,6 @@ namespace UESAN.Jobs.Core.Services
 				Dni = postulanteUpdateDTO.Dni,
 				Direccion = postulanteUpdateDTO.Direccion,
 				Telefono = postulanteUpdateDTO.Telefono,
-				Cv = postulanteUpdateDTO.Cv,
-				Certificados = postulanteUpdateDTO.Certificados,
 				IdUsuario = postulanteUpdateDTO.UpdateUsuario.IdUsuario,
 			};
 			var usuario = new Usuario()
@@ -136,7 +128,7 @@ namespace UESAN.Jobs.Core.Services
 		public async Task<bool> Delete(int id)
 		{
 			var idUsuario = await _postulanteRepository.GetIdUsuario(id);
-			return await _postulanteRepository.delete(id) && await _usuarioRepository.delete(idUsuario);
+			return await _postulanteRepository.delete(id);
 		}
 
 		

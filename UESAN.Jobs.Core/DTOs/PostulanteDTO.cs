@@ -20,9 +20,7 @@ namespace UESAN.Jobs.Core.DTOs
 
 		public string? Telefono { get; set; }
 
-		public string? Cv { get; set; }
-
-		public string? Certificados { get; set; }
+		
 
 	}
 
@@ -36,10 +34,6 @@ namespace UESAN.Jobs.Core.DTOs
 		public string? Direccion { get; set; }
 
 		public string? Telefono { get; set; }
-
-		public string? Cv { get; set; }
-
-		public string? Certificados { get; set; }
 
 		public UsuarioAuthRequestDTO? UsuarioInsert { get; set; }
 
@@ -56,9 +50,6 @@ namespace UESAN.Jobs.Core.DTOs
 
 		public string? Telefono { get; set; }
 
-		public string? Cv { get; set; }
-
-		public string? Certificados { get; set; }
 
 		public UsuarioDescripcionDTO? Usuario { get; set; }
 
@@ -75,10 +66,6 @@ namespace UESAN.Jobs.Core.DTOs
 		public string? Direccion { get; set; }
 
 		public string? Telefono { get; set; }
-
-		public string? Cv { get; set; }
-
-		public string? Certificados { get; set; }
 
 		public UsuarioUpdate? UpdateUsuario { get; set; }
 

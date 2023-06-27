@@ -16,4 +16,8 @@
     <ProjectReference Include="..\UESAN.Jobs.Infrastructure\UESAN.Jobs.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="files\" />
+  </ItemGroup>
+
 </Project>

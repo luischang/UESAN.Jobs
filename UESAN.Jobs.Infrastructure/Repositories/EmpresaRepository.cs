@@ -52,7 +52,7 @@ namespace UESAN.Jobs.Infrastructure.Repositories
 
 		public async Task<bool> delete(int id)
 		{
-			var emp = await _context.Empresa.Where(x => x.IdEmpresa == id).FirstOrDefaultAsync();
+			var emp = await _context.Empresa.Where(x => x.IdEmpresa == id).Include(c=>c.IdUsuarioNavigation).FirstOrDefaultAsync();
 
 			if (emp == null)
 			{
