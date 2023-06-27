@@ -69,8 +69,28 @@ namespace UESAN.Jobs.Core.Services
 			};
 			return empresaDTO;
 		}
+        public async Task<EmpresaUsuarioDTO> GetByIdUsuario(int id)
+        {
+            var empresa = await _empresaRepository.GetByIdUsuario(id);
+            if (empresa == null)
+                return null;
+            var empresaDTO = new EmpresaUsuarioDTO()
+            {
+                IdEmpresa = empresa.IdEmpresa,
+                Nombre = empresa.Nombre,
+                Ruc = empresa.Ruc,
+                Direccion = empresa.Direccion,
+                Telefono = empresa.Telefono,
+                Usuario = new UsuarioDescripcionDTO()
+                {
+                    IdUsuario = empresa.IdUsuarioNavigation.IdUsuario,
+                    Correo = empresa.IdUsuarioNavigation.Correo
+                }
 
-		public async Task<bool> Insert(EmpresaInsertDTO empresaInsertDTO)
+            };
+            return empresaDTO;
+        }
+        public async Task<bool> Insert(EmpresaInsertDTO empresaInsertDTO)
 		{
 			var usuarioI = new UsuarioAuthRequestDTO()
 			{

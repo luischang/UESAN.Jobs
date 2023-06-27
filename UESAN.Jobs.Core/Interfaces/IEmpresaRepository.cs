@@ -6,7 +6,8 @@ namespace UESAN.Jobs.Core.Interfaces
 	{
 		Task<IEnumerable<Empresa>> GetAll();
 		Task<Empresa> GetById(int id);
-		Task<bool> InsertEmpresa(Empresa empresa);
+		Task<Empresa> GetByIdUsuario(int id);
+        Task<bool> InsertEmpresa(Empresa empresa);
 		Task<bool> Update(Empresa empresa);
 		Task<bool> delete(int id);
 		Task<int> GetIdUsuario(int id);

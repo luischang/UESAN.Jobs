@@ -48,7 +48,17 @@ namespace UESAN.Jobs.API.Controllers
 			return Ok(result);
 		}
 
-		[HttpPut]
+        [HttpGet("GetByUsuario/{id}")]
+        public async Task<IActionResult> GetByIdUsuario(int id)
+        {
+            var result = await _empresaServices.GetByIdUsuario(id);
+            if (result == null)
+                return NotFound();
+            return Ok(result);
+        }
+
+
+        [HttpPut]
 		public async Task<IActionResult> Update( EmpresaUpdateDTO empresaUpdateDTO)
 		{
 				var result = await _empresaServices.Update(empresaUpdateDTO);

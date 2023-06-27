@@ -122,7 +122,7 @@ namespace UESAN.Jobs.Core.Services
 					Funciones = ofertaInsert.Funciones,
 					Modalidad = ofertaInsert.Modalidad,
 					Certificados = ofertaInsert.Certificados,
-					FechaCreacion = ofertaInsert.FechaCreacion,
+					FechaCreacion = DateTime.Now,
 					Estado = true,
 					Puesto = ofertaInsert.Puesto,
 					Requisitos = ofertaInsert.Requisitos,

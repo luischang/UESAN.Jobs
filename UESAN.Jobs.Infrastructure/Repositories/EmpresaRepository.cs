@@ -36,7 +36,16 @@ namespace UESAN.Jobs.Infrastructure.Repositories
 
 		}
 
-		public async Task<bool> InsertEmpresa(Empresa empresa)
+        public async Task<Empresa> GetByIdUsuario(int id)
+        {
+            return await _context.Empresa
+                .Where(x => x.IdUsuario == id && x.IdUsuarioNavigation.Estado == true)
+                .Include(z => z.IdUsuarioNavigation)
+                .FirstOrDefaultAsync();
+
+        }
+
+        public async Task<bool> InsertEmpresa(Empresa empresa)
 		{
 			await _context.Empresa.AddAsync(empresa);
 			int rows = await _context.SaveChangesAsync();
