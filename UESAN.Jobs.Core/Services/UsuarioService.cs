@@ -30,8 +30,6 @@ namespace UESAN.Jobs.Core.Services
 				IdUsuario = usuario.IdUsuario,
 				Tipo = usuario.Tipo,
 				Estado = usuario.Estado,
-				Correo = usuario.Correo,
-				Password = usuario.Password,
 
 			};
 			return usuarioDTO;

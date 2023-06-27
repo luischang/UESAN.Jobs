@@ -71,5 +71,10 @@ namespace UESAN.Jobs.Infrastructure.Repositories
 			return idU;
 		}
 
+		public async Task<Empresa> getEmpresaByUsuario(int id)
+		{
+			return await _context.Empresa.Where(x => x.IdUsuario == id).Include(z => z.IdUsuarioNavigation).FirstOrDefaultAsync();
+		}
+
 	}
 }

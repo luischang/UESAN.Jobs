@@ -72,13 +72,11 @@ namespace UESAN.Jobs.Core.DTOs
 
 	}
 
-	public class PostulanteDescDTO
+	public class PostulanteValidacion
 	{
+		public int IdPostulante { get; set; }
 
-		public string? Nombre { get; set; }
-
-		public UsuarioDescripcionDTO? Usuario { get; set; }
-
+		public UsuarioValidacion Usuario { get; set; }
 	}
 
 	public class PostulanteOfertaPostularInsertDTO 

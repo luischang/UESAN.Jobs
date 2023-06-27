@@ -10,5 +10,6 @@ namespace UESAN.Jobs.Core.Interfaces
 		Task<bool> Update(Empresa empresa);
 		Task<bool> delete(int id);
 		Task<int> GetIdUsuario(int id);
+		Task<Empresa> getEmpresaByUsuario(int id);
 	}
 }

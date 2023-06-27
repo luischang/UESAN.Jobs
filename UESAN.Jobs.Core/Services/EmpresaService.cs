@@ -135,6 +135,8 @@ namespace UESAN.Jobs.Core.Services
 			return await _empresaRepository.delete(id);
 		}
 
+		
+
 
 		
 

@@ -98,6 +98,13 @@ namespace UESAN.Jobs.Core.DTOs
 
 	}
 
+	public class EmpresaValidacion
+	{
+		public int IdEmpresa { get; set; }
+
+		public UsuarioValidacion Usuario { get; set; }
+	}
+
 	
 	 
 }

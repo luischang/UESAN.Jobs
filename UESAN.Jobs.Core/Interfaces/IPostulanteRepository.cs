@@ -12,6 +12,7 @@ namespace UESAN.Jobs.Core.Interfaces
 		Task<int> GetIdUsuario(int id);
 
 		Task<bool> delete(int id);
+		Task<Postulante> getPostulanteByUsuario(int id);
 
 	}
 }

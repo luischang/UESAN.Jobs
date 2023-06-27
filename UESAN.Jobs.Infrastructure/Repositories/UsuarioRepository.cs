@@ -21,7 +21,7 @@ namespace UESAN.Jobs.Infrastructure.Repositories
 
 		public async Task<Usuario> SigIn( string username, string password) 
 		{
-			return await _context.Usuario.Where(x => x.Correo == username && x.Password == password).FirstOrDefaultAsync();
+			return await _context.Usuario.Where(x => x.Correo == username && x.Password == password && x.Estado == true).FirstOrDefaultAsync();
 		
 		}
 

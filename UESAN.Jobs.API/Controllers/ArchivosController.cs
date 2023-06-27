@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using UESAN.Jobs.Core.DTOs;
 using UESAN.Jobs.Core.Interfaces;
+using UESAN.Jobs.Core.Services;
 
 
 namespace UESAN.Jobs.API.Controllers
@@ -94,6 +95,15 @@ namespace UESAN.Jobs.API.Controllers
 			
 
 			return new FileStreamResult(archivos.FirstOrDefault(), "application/pdf");
+		}
+
+		[HttpDelete]
+		public async Task<IActionResult> Delete(string nom)
+		{
+			var result = await _services.delete(nom);
+			if (!result)
+				return NotFound();
+			return Ok(result);
 		}
 
 

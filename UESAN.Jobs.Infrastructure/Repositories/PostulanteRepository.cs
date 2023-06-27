@@ -76,6 +76,11 @@ namespace UESAN.Jobs.Infrastructure.Repositories
 			return rows > 0;
 		}
 
+		public async Task<Postulante> getPostulanteByUsuario(int id)
+		{
+			return await _context.Postulante.Where(x => x.IdUsuario == id).Include(z => z.IdUsuarioNavigation).FirstOrDefaultAsync();
+		}
+
 
 
 	}

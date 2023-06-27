@@ -33,9 +33,6 @@ namespace UESAN.Jobs.Core.DTOs
 
 		public bool? Estado { get; set; }
 
-		public string? Correo { get; set; }
-
-		public string? Password { get; set; }
 
 
 	}
@@ -69,6 +66,12 @@ namespace UESAN.Jobs.Core.DTOs
 	{
 		public string? Correo { get; set; }
 		public string? Password { get; set; }
+	}
+
+	public class UsuarioValidacion
+	{
+		public string? Tipo { get; set; }
+		public bool? Estado { get; set; }
 	}
 
 
