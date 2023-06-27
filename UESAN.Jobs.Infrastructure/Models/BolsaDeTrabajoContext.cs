@@ -16,6 +16,8 @@ public partial class BolsaDeTrabajoContext : DbContext
     {
     }
 
+    public virtual DbSet<Archivos> Archivos { get; set; }
+
     public virtual DbSet<Calificaciones> Calificaciones { get; set; }
 
     public virtual DbSet<Competencias> Competencias { get; set; }
@@ -40,6 +42,24 @@ public partial class BolsaDeTrabajoContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<Archivos>(entity =>
+        {
+            entity.HasKey(e => e.IdArchivo).HasName("PK__Archivos__26B92111A112781E");
+
+            entity.Property(e => e.Estado).HasColumnName("estado");
+            entity.Property(e => e.NombreArchivo)
+                .HasMaxLength(100)
+                .IsFixedLength();
+            entity.Property(e => e.Tipo)
+                .HasMaxLength(100)
+                .IsFixedLength()
+                .HasColumnName("tipo");
+
+            entity.HasOne(d => d.IdPostulanteNavigation).WithMany(p => p.Archivos)
+                .HasForeignKey(d => d.IdPostulante)
+                .HasConstraintName("FK__Archivos__IdPost__403A8C7D");
+        });
+
         modelBuilder.Entity<Calificaciones>(entity =>
         {
             entity.HasKey(e => e.IdCalificacion).HasName("PK__Califica__E056358FC75CD105");

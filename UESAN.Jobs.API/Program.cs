@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using System.Text.Json.Serialization;
 using UESAN.Jobs.Core.Interfaces;
 using UESAN.Jobs.Core.Services;
 using UESAN.Jobs.Infrastructure.Models;
@@ -31,25 +32,36 @@ builder.Services.AddTransient<ICompetenciasService, CompetenciasService>();
 builder.Services.AddTransient<ICompetenciasOfertaRepository,CompetenciasOfertaRepository>();
 builder.Services.AddTransient<ICompetenciasOfertaService, CompetenciasOfertaService>();
 builder.Services.AddTransient<ICompetenciasPostulanteRepository, CompetenciasPostulanteRepository>();
-builder.Services.AddTransient<ICompetenciasPostulanteService,  CompetenciasPostulanteService>();
+builder.Services.AddTransient<ICompetenciasPostulanteService,  CompetenciasPostulanteService>(); 
 builder.Services.AddTransient<ICalificacionRespository, CalificacionRespository>();
 builder.Services.AddTransient<ICalificacionesServices, CalificacionesServices>();
 builder.Services.AddTransient<IOfertaPostularRepository, OfertaPostularRepository>();
 builder.Services.AddTransient<IOfertaPostularService, OfertaPostularService>();
+builder.Services.AddTransient<IArchivosRepository, ArchivosRepository>();
+builder.Services.AddTransient<IArchivosService, ArchivosService>();
 
-builder.Services.AddControllers();
+
+
+builder.Services.AddControllers().AddJsonOptions(options =>
+{
+	options
+		.JsonSerializerOptions
+		.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+});
 
 builder.Services.AddCors(options =>
 {
 	options.AddDefaultPolicy(builder =>
 	{
 		builder
-		.AllowAnyOrigin()
-		.AllowAnyMethod()
-		.AllowAnyHeader();
+			//.WithOrigins("aquivatulocalhost_o_dominio_url")
+			.AllowAnyOrigin()
+			.AllowAnyMethod()
+			.AllowAnyHeader();
 	});
 });
 
+builder.Services.AddControllers();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 
@@ -71,7 +83,6 @@ if (app.Environment.IsDevelopment())
 
 app.UseAuthorization();
 app.UseCors();
-
 app.MapControllers();
 
 app.Run();

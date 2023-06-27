@@ -21,6 +21,8 @@ public partial class Postulante
 
 	public string? Certificados { get; set; }
 
+	public virtual ICollection<Archivos> Archivos { get; set; } = new List<Archivos>();
+
 	public virtual ICollection<Calificaciones> Calificaciones { get; set; } = new List<Calificaciones>();
 
 	public virtual ICollection<CompetenciasPostulante> CompetenciasPostulante { get; set; } = new List<CompetenciasPostulante>();
