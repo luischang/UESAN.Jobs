@@ -1,9 +1,10 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.IO.Compression;
 using UESAN.Jobs.Core.DTOs;
 using UESAN.Jobs.Core.Interfaces;
 using UESAN.Jobs.Core.Services;
-
+using System.IO.Compression;
 
 namespace UESAN.Jobs.API.Controllers
 {
@@ -58,44 +59,36 @@ namespace UESAN.Jobs.API.Controllers
 			}
 		}
 
+		
+
 		[HttpPost("mostrarCertificados")]
 		public async Task<IActionResult> MostrarArchivos([FromBody] GetArchivosDTO archi)
 		{
 			var folderPath = Path.Combine(Directory.GetCurrentDirectory(), "files");
-			var archivos = new List<Stream>();
 			var nombresArchivos = await _services.GetNombresCertificados(archi);
-			foreach (var nombreArchivo in nombresArchivos)
-			{
-				var filePath = Path.Combine(folderPath, nombreArchivo.NombreArchivo);
 
-				if (System.IO.File.Exists(filePath))
+			var zipMemoryStream = new MemoryStream();
+
+			using (var zipArchive = new ZipArchive(zipMemoryStream, ZipArchiveMode.Create, true))
+			{
+				foreach (var nombreArchivo in nombresArchivos)
 				{
-					var fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read);
-					archivos.Add(fileStream);
+					var filePath = Path.Combine(folderPath, nombreArchivo.NombreArchivo);
+
+					if (System.IO.File.Exists(filePath))
+					{
+						var entryName = Path.GetFileName(filePath);
+						zipArchive.CreateEntryFromFile(filePath, entryName);
+					}
 				}
 			}
 
-			return new FileStreamResult(archivos.FirstOrDefault(), "application/pdf");
+			zipMemoryStream.Seek(0, SeekOrigin.Begin);
+			return File(zipMemoryStream, "application/zip", "certificados.zip");
 		}
-		  
-		[HttpPost("mostrarCV")]
-		public async Task<IActionResult> MostrarCV(GetArchivosDTO archi)
-		{
-			var folderPath = Path.Combine(Directory.GetCurrentDirectory(), "files");
-			var archivos = new List<Stream>();
-			var nombresArchivos = await _services.GetNombreCV(archi);
-			
-			var filePath = Path.Combine(folderPath, nombresArchivos.NombreArchivo);
 
-			if (System.IO.File.Exists(filePath))
-			{
-				var fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read);
-				archivos.Add(fileStream);
-			}
-			
 
-			return new FileStreamResult(archivos.FirstOrDefault(), "application/pdf");
-		}
+
 
 		[HttpDelete]
 		public async Task<IActionResult> Delete(string nom)
@@ -105,6 +98,27 @@ namespace UESAN.Jobs.API.Controllers
 				return NotFound();
 			return Ok(result);
 		}
+
+		[HttpPost("mostrarCV")]
+		public async Task<IActionResult> MostrarCV(GetArchivosDTO archi)
+		{
+			var folderPath = Path.Combine(Directory.GetCurrentDirectory(), "files");
+			var nombresArchivos = await _services.GetNombreCV(archi);
+
+				var filePath = Path.Combine(folderPath, nombresArchivos.NombreArchivo);
+				var nombreArchivo = nombresArchivos.NombreArchivo;
+				if (System.IO.File.Exists(filePath))
+				{
+					var fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read);
+					return File(fileStream, "application/octet-stream", nombreArchivo);
+				}
+			
+
+			// En caso de que no se encuentre el archivo
+			return NotFound();
+		}
+
+
 
 
 
