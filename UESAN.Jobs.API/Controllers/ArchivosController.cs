@@ -13,10 +13,12 @@ namespace UESAN.Jobs.API.Controllers
 	public class ArchivosController : ControllerBase
 	{
 		private readonly IArchivosService _services;
+		private readonly IPostulanteRepository _postulanteRepository;
 
-		public ArchivosController(IArchivosService services)
+		public ArchivosController(IArchivosService services, IPostulanteRepository postulanteRepository)
 		{
 			_services = services;
+			_postulanteRepository = postulanteRepository;
 		}
 
 		[HttpPost]
@@ -66,7 +68,7 @@ namespace UESAN.Jobs.API.Controllers
 		{
 			var folderPath = Path.Combine(Directory.GetCurrentDirectory(), "files");
 			var nombresArchivos = await _services.GetNombresCertificados(archi);
-
+			var postulante = await _postulanteRepository.GetById((int)archi.IdPostulante);
 			var zipMemoryStream = new MemoryStream();
 
 			using (var zipArchive = new ZipArchive(zipMemoryStream, ZipArchiveMode.Create, true))
@@ -82,9 +84,10 @@ namespace UESAN.Jobs.API.Controllers
 					}
 				}
 			}
+			var namefiel = "certificados_de_" + postulante.Nombre + ".zip";
 
 			zipMemoryStream.Seek(0, SeekOrigin.Begin);
-			return File(zipMemoryStream, "application/zip", "certificados.zip");
+			return File(zipMemoryStream, "application/zip", namefiel);
 		}
 
 
@@ -104,9 +107,10 @@ namespace UESAN.Jobs.API.Controllers
 		{
 			var folderPath = Path.Combine(Directory.GetCurrentDirectory(), "files");
 			var nombresArchivos = await _services.GetNombreCV(archi);
+			var postulante = await _postulanteRepository.GetById((int)archi.IdPostulante);
 
-				var filePath = Path.Combine(folderPath, nombresArchivos.NombreArchivo);
-				var nombreArchivo = nombresArchivos.NombreArchivo;
+			var filePath = Path.Combine(folderPath, nombresArchivos.NombreArchivo);
+				var nombreArchivo = "CV_"+postulante.Nombre;
 				if (System.IO.File.Exists(filePath))
 				{
 					var fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read);
