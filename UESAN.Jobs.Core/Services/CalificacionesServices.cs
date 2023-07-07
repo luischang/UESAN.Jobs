@@ -97,15 +97,15 @@ namespace UESAN.Jobs.Core.Services
 
 		public async Task<int> GetPormedioCalificacion(int idEmpresa)
 		{
-			var contador = 0;
+			
 			var calificaciones = await _calificaciones.GetAllByIdEmpresa(idEmpresa);
 			var acumCalificaciones = 0;
-			if(calificaciones != null)
+			var contador = calificaciones.Count();
+			if (calificaciones.Count() >= 1)
 			{
 				foreach (var item in calificaciones)
 				{
 					acumCalificaciones = (int)(acumCalificaciones + item.Calificacion);
-					contador++;
 				}
 				return acumCalificaciones/contador;
 			}
